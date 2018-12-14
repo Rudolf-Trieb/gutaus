@@ -1,0 +1,315 @@
+	* {
+		margin: 0px;
+		padding: 0px;
+		}
+		
+	body {
+		font-family: verdana;
+		background-color: #abc;//#ABC; #B4EEB4
+		padding: 0px;
+		font-size: 9pt;
+		}
+		
+	
+	table {
+		background-color: #B4EEB4;
+		border-radius: 5px 5px 5px 5px;
+		margin: 1% auto;
+		padding: 1% 1%;
+	}
+	
+th {background-color: #EE9A49;border-radius: 5px;}
+		
+h4 {text-decoration: underline; background-color:lightgreen;}
+
+
+		
+	#seite {
+		width:95%;
+		margin: 0 auto;
+	}
+	
+	#header {
+		margin: 0 auto;
+		position: relative;
+		color:#505050;
+		background-color: #B4EEB4;
+		margin:0px;
+		border-radius: 10px;
+		
+		//text-shadow: -1px -1px 0px #202020, 1px 1px 0px #fff;
+		// border: 4px solid #CDC673;
+	}
+	
+	
+			#header h1 {
+			text-align: center;
+			//background:#ccc;
+			padding: 0.5em;
+		}
+		
+		#header h3 {
+			text-align: center;
+			//background:#ccc;
+			padding: 0.5em;
+		}
+	
+	#navigation {
+		margin: 0 auto;
+		position: relative;
+		//border: 2px solid #FF3030;
+		top: 0px;
+		margin-top: 0px;
+		padding: 10px;
+		width: 80%;
+		height: 28px;
+		border-radius:5px;
+		z-index: 100;
+		background-color: #B4EEB4;
+	}	
+	
+	
+	
+
+	
+		#kontostanzanzeige {
+			//position: absolute;
+			//bottom: 0.7em;
+			//left: 0;
+			//float:left;
+			margin-top: 0px;
+			font-size: x-small;
+			background-color: white;
+			border-radius: 10px;
+			border: 0px solid black;
+			padding:0px;
+			box-shadow: 3px 3px 7px #333;
+			
+		}
+		
+		#kontostanzanzeige:hover {
+			-moz-transform: scale(1.5); 
+			-webkit-transform: scale(1.5);
+		}
+		
+		#kontostanzanzeige table{
+			border-radius: 20px;
+		}
+		
+		
+		#avatar {
+			//position: absolute;
+			//bottom: 0em;
+			//top: 0.5em;
+			//right: 0;
+			float:right;
+			margin-top: 10px;
+			width: 110px;
+			height: 110px;
+			background-color: white;
+			overflow: hidden;
+			border-radius: 10px;
+			border: 1px solid black;
+			box-shadow: 3px 3px 7px #333;
+		}
+		#avatar_icon:hover {
+			-moz-transform: scale(2); 
+			-webkit-transform: scale(2);
+		}
+		
+	
+	#inhalt {
+		position: relative;
+		clear:both;
+		border-top: 4px solid #CDC673;
+		//background-image:url('images/Pyramide Goldener Schnitt_mini.jpg');
+		background-size:49%;
+		background-color: #FFEC8B;
+		min-height: 560px;
+		background-repeat: no-repeat;
+		background-position:center;
+		border-radius: 10px;
+		margin: 0px;
+		padding: 10px;
+	}
+	
+	#inhalt h3 , #inhalt p {
+		padding: 0.5em 0;
+	}
+	
+	#inhalt p {
+		padding: 0.5em 0 2em 0;
+	}
+	
+	
+		
+		
+	/* rules for navigation menu */
+	/* ========================================== */
+	
+	/* 
+	#navigation {
+		//clear: both;
+	    position: relative;
+		background-color: #FF3030;
+		background-image:url('images/Pyramide Goldener Schnitt_mini.jpg');
+		background-size:60%;
+		background-repeat: no-repeat;
+	}
+	*/
+	
+	ul#navmenu, ul.sub1, ul.sub2, ul.sub3 {
+		list-style-type: none;
+		background-color: #CDC673;		
+		}
+		
+	ul.sub1 {
+		padding:5px;
+	}
+		
+	ul.sub2 {
+		padding-bottom: 5px;
+		padding-right: 10px;
+		padding-left: 0px;
+	}
+	
+	ul.sub3 {
+		padding-bottom: 5px;
+		padding-right: 15px;
+		padding-left: 0px;
+	}
+		
+	ul#navmenu li {
+		width: 125px;
+		text-align: center;
+		position: relative;
+		float: left;
+		box-shadow: 3px 3px 7px #333;
+		}
+	#logout {
+		width: 200px;
+	}
+		
+	ul#navmenu>li {
+		margin-right: 4px;
+		margin-left: 4px;
+		}	
+	
+		
+	ul#navmenu > li:last-child {
+				float: right;
+				
+	}
+	
+		
+	ul#navmenu a {
+		text-decoration: none;
+		font-weight:bold;
+		background:white;
+		//letter-spacing:1px;
+		color:#505050;
+		//text-shadow: -1px -1px 0px #202020, 1px 1px 0px #fff;
+		
+		
+		
+		display: block;
+		width: 125px;
+		//height: 25px;
+		line-height: 25px;
+		//background-color: #FFF;
+		border: 1px solid #CCC;
+		border-radius: 5px;
+		//color: black;
+		}
+		
+	ul#navmenu .sub1 li {
+		}
+		
+	ul#navmenu .sub1 a {
+		margin-top: 5px;
+		}
+		
+	ul#navmenu .sub2 a {
+		margin-left: 3px;
+		background-color: #C0FF3E;//lightgreen;//orange;
+		}
+		
+	ul#navmenu .sub3 a {
+		margin-left: 6px;
+		}
+		
+	ul#navmenu li:hover > a {
+		background-color: #9ACD32;//green; //##CFC;
+		}
+		
+	ul#navmenu li:hover a:hover {
+		background-color: #9ACD32;//green; //#FF0;
+		}
+		
+	ul#navmenu ul.sub1 {
+		display: none;
+		position: absolute;
+		top: 26px;
+		left: 0px;
+		}
+		
+	ul#navmenu ul.sub2 {
+		display: none;
+		position: absolute;
+		top: 0px;
+		left: 126px;
+		}
+
+	ul#navmenu ul.sub3 {
+		display: none;
+		position: absolute;
+		top: 0px;
+		left: 126px;
+		}		
+		
+		
+	ul#navmenu li:hover .sub1 {
+		display: block;
+		}
+		
+	ul#navmenu .sub1 li:hover .sub2 {
+		display: block;
+		}
+		
+	ul#navmenu .sub1 .sub2 li:hover .sub3{
+		display: block;
+		}
+		
+	.darrow {
+		font-size: 11pt;
+		position: absolute;
+		top: 5px;
+		right: 4px;
+		color: #505050;
+		}
+		
+	.rarrow {
+		font-size: 13pt;
+		position: absolute;
+		top: 6px;
+		right: 4px;
+		color: #505050;
+		}
+		
+		
+	.ui-tabs li.ui-tabs-active
+	{
+		background: #B4EEB4;
+	}	
+
+		
+	/* Klassen==================================== */
+		
+	.linksbuendig  {text-align: left;}
+	.rechtsbuendig {text-align: right;}
+	.zentriert {text-align: center;}
+	.betont		   {font-weight:bold;}
+	.white         {color:#505050;}
+	.red           {color:#FF3030;}
+	.yellow        {color:yellow;}
+	.green		   {background-color:#41EE00;}

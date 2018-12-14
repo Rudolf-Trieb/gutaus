@@ -1,0 +1,21 @@
+<script>
+		$(document).ready(function(){
+						
+			$(".registrierung").click(function() {
+			
+				$("#inhalt").load("include_31_registrierung_formular.php");
+				
+		    });
+			
+			$(".gastzugang").click(function() {
+			
+				$("#inhalt").load("include_30_login_kontrolle.php?Nickname=GastTester1&PW=GastTester1");
+				
+		    });
+					
+		});
+</script>
+
+			<li class="registrierung"><a  href="#">Testanmeldung</a></li>
+			<li class="gastzugang"><a  href="#">Gastzugang</a></li>
+			<li id="login"><a onclick_stop="loadXMLDoc('GET','include_3_login.php')" href="#">LOGIN</a></li>
