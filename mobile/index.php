@@ -333,8 +333,10 @@
 			  </div>
 
 			  <?php include('footer.html');?>
-			</div>			
-
+			</div>	
+<!--		
+*******************************************************************************************************
+-->
 		<div data-role="page" id="creditnotes-publish">
 			<?php include('header.html');?>
 
@@ -592,9 +594,9 @@
 
 		  <div data-role="main" class="ui-content">
 			<form class="ui-filterable">
-				<input class="members-filter" data-type="search">
+				<input id="members-filter-pay-to" data-type="search" placeholder="Bitte Mitgliedsname eingenben">
 			</form>
-			<ul data-role="listview" id="list-members" data-filter="true" data-input=".members-filter" data-autodividers="true" data-inset="true">
+			<ul data-role="listview" id="list-members" data-filter="true" data-input="#members-filter-pay-to" data-autodividers="true" data-inset="true">
 				<!-- is filled from DB//-->
 			</ul>
 		  </div>
@@ -651,9 +653,9 @@
 			</a>
 
 			<form class="ui-filterable">
-				<input class="members-filter" data-type="search" placeholder="Bitte Mitgliedsname eingenben">
+				<input id="members-filter" data-type="search" placeholder="Bitte Mitgliedsname eingenben">
 			</form>
-			<ul data-role="listview" id="list-members" data-filter="true" data-input=".members-filter" data-autodividers="true" data-inset="true">
+			<ul data-role="listview" id="list-members" data-filter="true" data-input="#members-filter" data-autodividers="true" data-inset="true">
 				<!-- is filled from DB//-->
 			</ul>
 <!--
