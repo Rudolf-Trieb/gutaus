@@ -41,7 +41,7 @@
 // LOGIN LOGOUT REGISTRATION
 //*************************************************************************************************************************************************	
 //-->
-<div data-role="page" id="main-logged-out" data-theme="a" >
+<div data-role="page" id="main-logged-out" data-theme="a">
   <div data-role="header"  data-position="fixed" data-position="fixed">
 	<div data-role="navbar">
 	  <ul>
@@ -64,8 +64,7 @@
 	  </ul>
 	</div>
   </div>
-
-  <div data-role="main" class="ui-content">
+  <div data-role="main" class="ui-content" style="position: relative;top: 45px;">
 	<a href="#login" class="ui-btn ui-icon-edit ui-btn-icon-right" data-transition="flip" autofocus>LOGIN</a>
 	<a href="#faq" class="ui-btn ui-icon-bullets ui-btn-icon-right" data-transition="slide">FAQ</a>
 	<a href="#registration" class="ui-btn ui-icon-edit ui-btn-icon-right" data-transition="slide">REGISTRIERUNG</a>
@@ -236,7 +235,7 @@
 ***** now user is logged in ******************************************************************************
 *********************************************************************************************************
 -->
-<div data-role="page" id="main">
+<div data-role="page" id="main" style="clear: both;">
   <div data-role="header" data-theme="b" data-position="fixed">
 	<div data-role="navbar">
 	  <ul>
@@ -262,11 +261,11 @@
   </div>
 
   <div data-role="main" class="ui-content">
-   <a href="#creditnotes-menu" class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide" autofocus>Meine Gutscheine</a>
-   <a href="#profile"          class="ui-btn ui-icon-user    ui-btn-icon-right" data-transition="slide"          >Mein Profil</a>
-   <a href="#memberlists-menu"      class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide"          >Mitgliederlisten</a>
-   <a href="#faq"              class="ui-btn ui-icon-bullets ui-btn-icon-right" data-transition="slide"          >FAQ</a>
-  </div>
+	   <a href="#creditnotes-menu" class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide" autofocus>Meine Gutscheine</a>
+	   <a href="#profile"          class="ui-btn ui-icon-user    ui-btn-icon-right" data-transition="slide"          >Mein Profil</a>
+	   <a href="#memberlists-menu"      class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide"          >Mitgliederlisten</a>
+	   <a href="#faq"              class="ui-btn ui-icon-bullets ui-btn-icon-right" data-transition="slide"          >FAQ</a>
+   	</div>
 
   <div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
