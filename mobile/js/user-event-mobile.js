@@ -878,10 +878,10 @@
 				}
 				else if (gutaus.members.chosen=='searched' & typeof(gutaus.members.members_searcheded)=='undefined') { // searched-list is called but not loaded
 					url="./model/members-searched.php";
-					search_str=$.trim($("#members-filter").val())
+					search_str=$.trim($(".members-filter").val())
 				}	
 				
-				if (typeof(url)!='undefined') { // members-list is not loaded so start loading from DB
+				if (typeof(url)!='undefined') { // Type of members list to search for in DB is set
 					$.ajax({
 						type: "post",
 						url: url,
@@ -907,7 +907,8 @@
 									else{ // searched
 										gutaus.members.searched=members;
 									}
-									gutaus.members.show();				
+									gutaus.members.show();
+									return true; // member(s) was (were) found in DB				
 								}
 								else { // no member was found
 									if (gutaus.members.chosen=='received') {
@@ -921,23 +922,29 @@
 										+'und bezahlen Sie damit Freunde, Bekannte oder auch selbst Ihre Handelspartner!');
 										$("#btn-members-publish").click ();
 									}
-									return;
+									return false; // no member was found in DB
 								}
+
+								return false; // no member was found in DB
 							}
 							else { // user isn't logged in
 								alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-								$.mobile.changePage("#main-logtout");							
+								$.mobile.changePage("#main-logtout");
+								return false; // no member was found in DB							
 							}
 						},
 						error: function (request,error) {
 							// This callback function will trigger on unsuccessful action                
 							alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang?');
+							return false; // no member(s) was (were) found in DB
 						}
 					}); 
 				}
 
-				else { // member-list to get is loaded only show datas
+				else { // Type of members list to search for in DB is not set so only show last members list if any was loaded before
 					gutaus.members.show();
+					return true; // member(s) was (were) found in DB before this search
+
 				}			
 				
 			}
@@ -1222,6 +1229,12 @@ $(document).ready(function(){
 	};
 
 
+
+
+//*************************************************************************************************************************************************
+// EVENTS FOR ...
+//*************************************************************************************************************************************************	 
+
 //*************************************************************************************************************************************************
 // LOGIN LOGOUT REGISTRATION
 //*************************************************************************************************************************************************	 
@@ -1284,11 +1297,19 @@ $(document).ready(function(){
 			//alert(navigator);
 	});	
 
+//*************************************************************************************************************************************************
+// SELECT MEMBERLISTS ******************************************************************************************************************************
+//*************************************************************************************************************************************************	
 
-	
+		$(document).on("pagebeforeshow", "#memberlists-menu", function() { // chose a menbershiplist 
+			$(".navigation-line").html("Mitgliederlisten");
+			$(".massage-line-header").html("Bitte w&auml;hlen Sie aus!");
+			$(".gutaus-btn-back").attr("href", "#main");
+			$(".gutaus-btn-next").hide();
+		});	
 	
 //*************************************************************************************************************************************************
-// SELECT CREDITNOTE ******************************************************************************************************************************
+// SELECT CREDITNOTE-MENU ******************************************************************************************************************************
 //*************************************************************************************************************************************************	
 
 		$(document).on("pagebeforeshow", "#creditnotes-menu", function() { // chose kind of creditnotes (published,received,Euro,Horos or publish one)
@@ -1306,7 +1327,7 @@ $(document).ready(function(){
 					$("btn-creditnotes-received").hide();
 				}
 			}
-			$(".navigation-line").html("Gutscheine");
+			$(".navigation-line").html("Meine Gutscheine");
 			$(".massage-line-header").html("Bitte w&auml;hlen Sie aus!");
 			$(".gutaus-btn-back").attr("href", "#main");
 			$(".gutaus-btn-next").hide();
@@ -1511,13 +1532,13 @@ $(document).ready(function(){
 				}
 				
 			});	
-			
+			/*
 				$(document).on("pagebeforeshow", "#memberlists-menu", function(){ 
 					$(".navigation-line").html('bezahle');
 					$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an ein Mitglied aus Liste ...');
 					$(".gutaus-btn-back").attr("href", "#pay");
 				});	
-				
+			*/	
 
 // Memberlists ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++					
 		
@@ -1710,13 +1731,13 @@ $(document).ready(function(){
 				
 					$(document).on("pageshow", "#members-list", function() {
 						//$("#list-members:visible").listview("refresh");
-						$("#members-filter").blur();
+						$(".members-filter").blur();
 						if(gutaus.members.chosen=='searched') {
 							$(".gutaus-btn-next").html("suchen");
 							$(".gutaus-btn-next").show();
 						}
 						else {
-							$("#members-filter").val("");
+							$(".members-filter").val("");
 							$(".gutaus-btn-next").hide();
 						}
 						$(".gutaus-btn-back").attr("href","#pay");
@@ -1724,11 +1745,14 @@ $(document).ready(function(){
 					});			
 
 
-						$("#members-filter").keydown(function(e){
-							if (e.which==13){ // Enter Key
+						$(".members-filter").keyup(function(e){
+							if (e.which==13 || $(".members-filter").val().length>2){ // Enter Key
 								if (gutaus.members.chosen=='searched') {
-									gutaus.members.get();
-									$("#members-filter").blur();
+									if (!gutaus.members.get()) {
+										alert("Es gibt keien Mitglieder die mit den Buchstaben "+$(".members-filter").val()+" beginnen! Bitte suchen Sie mit ander Anfangsbuchstaben.");
+									};
+
+									//$(".members-filter").blur();
 								}
 								//$(".gutaus-btn-next").trigger( "focus" );
 								gutaus.user_data.validate_user_input();
@@ -1737,8 +1761,8 @@ $(document).ready(function(){
 							else if (e.which==32) { // Space Key
 									return false;
 							}
-							$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an Email: '+$("#input-email-receiver").val());
-						});					
+							$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an '+$(".members-filter").val());	
+						});				
 
 //**************************************************************************************************************************************************
 // SHOW GREDITNOT-TRANSACTIONS**********************************************************************************************************************

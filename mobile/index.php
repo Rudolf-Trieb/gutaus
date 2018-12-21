@@ -41,8 +41,8 @@
 // LOGIN LOGOUT REGISTRATION
 //*************************************************************************************************************************************************	
 //-->
-<div data-role="page" id="main-logtout">
-  <div data-role="header" data-theme="b" data-position="fixed" data-position="fixed">
+<div data-role="page" id="main-logged-out" data-theme="a" >
+  <div data-role="header"  data-position="fixed" data-position="fixed">
 	<div data-role="navbar">
 	  <ul>
 		<li style="text-align: center;">GuTauS</li>
@@ -60,7 +60,7 @@
 	</div>
 	<div data-role="navbar">
 	  <ul>
-		<li style="text-align: center;">Mit GuTauS bezahlen Sie ohne Geld<br>mit eigenen Gutscheinen an wen Sie wollen!!!</li>
+		<li style="text-align: center;">Mit GuTauS bezahlen Sie Freunde und Bekannte ohne Geld<br>mit eigenen Gutscheinen an wen Sie wollen!!!</li>
 	  </ul>
 	</div>
   </div>
@@ -71,7 +71,7 @@
 	<a href="#registration" class="ui-btn ui-icon-edit ui-btn-icon-right" data-transition="slide">REGISTRIERUNG</a>
   </div>
 
-  <div data-role="footer" data-theme="b" data-position="fixed">
+  <div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
 		  <ul>
 				<li style="text-align: center;"><a href="#" class="ui-btn ui-btn-inline ui-icon-info ui-btn-icon-right  ui-corner-all" data-transition="flow" data-direction="reverse">Info</a></li>
@@ -79,9 +79,11 @@
 		</div>
   </div>
 </div> 
-
-<div data-role="page" id="login">
-  <div data-role="header" data-theme="b" data-position="fixed" data-position="fixed">
+<!--
+********************************************************************************************************
+-->
+<div data-role="page" id="login" data-theme="a" >
+  <div data-role="header" data-position="fixed" data-position="fixed">
 	  
 		<div data-role="navbar">
 		  <ul>
@@ -96,6 +98,11 @@
 		<div data-role="navbar">
 		  <ul>
 			<li style="text-align: center;">Gutschein-Tausch-System</li>
+		  </ul>
+		</div>
+		<div data-role="navbar">
+		  <ul>
+			<li style="text-align: center;">LOGIN</li>
 		  </ul>
 		</div>
 
@@ -111,25 +118,27 @@
 		<label for="remember-login">Eingeloggt bleiben</label>
 		<input type="checkbox" name="remember-login" id="remember-login" value="remember-login">
 //-->
-		<a href="#" id="btn-login-check" class="ui-btn ui-corner-all " data-transition="flip" data-theme="b" data-icon="check" data-iconpos="right">LOGIN</a>
+		<a href="#" id="btn-login-check" class="ui-btn ui-corner-all " data-transition="flip" data-icon="check" data-iconpos="right">LOGIN</a>
     </form> 
   </div>
 
-  <div data-role="footer" data-theme="b" data-position="fixed">
+  <div data-role="footer" data-position="fixed">
 	<div data-role="navbar">
 	  <ul>	
 		<li style="text-align: center;"><a href="#" class="ui-btn ui-btn-inline ui-icon-info ui-btn-icon-right ui-corner-all" data-transition="slide" data-direction="reverse">Info</a></li>
 		<li style="text-align: center;">Sie sind nicht eingeloggt!</li>
-		<li style="text-align: center;"><a href="#main-logtout" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-right ui-corner-all" data-transition="slide" data-direction="reverse">Back</a></li>
+		<li style="text-align: center;"><a href="#main-logged-out" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-right ui-corner-all" data-transition="slide" data-direction="reverse">Back</a></li>
 		</ul>
 	</div>
   </div>
  
 </div>
 
-	
-<div data-role="page" id="registration">
-  <div data-role="header" data-theme="b" data-position="fixed" data-position="fixed">
+<!--
+********************************************************************************************************
+-->
+<div data-role="page" id="registration" data-theme="a" >
+  <div data-role="header" data-position="fixed" data-position="fixed">
 	  
 		<div data-role="navbar">
 		  <ul>
@@ -144,6 +153,11 @@
 		<div data-role="navbar">
 		  <ul>
 			<li style="text-align: center;">Gutschein-Tausch-System</li>
+		  </ul>
+		</div>
+		<div data-role="navbar">
+		  <ul>
+			<li style="text-align: center;">REGISTRIERUNG</li>
 		  </ul>
 		</div>
 
@@ -170,16 +184,17 @@
 	</form> 
   </div>
 
-  <div data-role="footer" data-theme="b" data-position="fixed">
+  <div data-role="footer" data-position="fixed">
     <h1>Sie sind nicht eingeloggt</h1>
 	<a href="#" class="ui-btn ui-btn-inline ui-icon-info ui-btn-icon-bottom  ui-corner-all" data-transition="flow" data-direction="reverse">Info</a>
-	<a href="#main-logtout" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-bottom ui-corner-all" data-transition="slide" data-direction="reverse" data-iconpos="left">Back</a>
-  </div>
- 
+	<a href="#main-logged-out" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-bottom ui-corner-all" data-transition="slide" data-direction="reverse" data-iconpos="left">Back</a>
+  </div> 
 </div>
-
-<div data-role="page" id="registration-confirm">
-  <div data-role="header" data-theme="b" data-position="fixed" data-position="fixed">
+<!--
+********************************************************************************************************
+-->
+<div data-role="page" id="registration-confirm" data-theme="a">
+  <div data-role="header" data-position="fixed" data-position="fixed">
 	  
 		<div data-role="navbar">
 		  <ul>
@@ -214,11 +229,13 @@
     <h1>Sie sind nicht eingeloggt</h1>
 	<a href="#" class="ui-btn ui-btn-inline ui-icon-info ui-btn-icon-bottom  ui-corner-all" data-transition="flow" data-direction="reverse">Info</a>
 	<a href="#registration" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-bottom ui-corner-all" data-transition="slide" data-direction="reverse" data-iconpos="left">Back</a>
-  </div>
- 
+  </div> 
 </div>
-
-
+<!--
+********************************************************************************************************
+***** now user is logged in ******************************************************************************
+*********************************************************************************************************
+-->
 <div data-role="page" id="main">
   <div data-role="header" data-theme="b" data-position="fixed">
 	<div data-role="navbar">
@@ -238,30 +255,27 @@
 	</div>
 	<div data-role="navbar">
 	  <ul>
-		<li style="text-align: center;">HOME</li>
+		<li style="text-align: center;">START</li>
 	  </ul>
 	</div>
     <a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip" data-theme="b">LOGOUT<br><span class="username"></span></a>
   </div>
 
   <div data-role="main" class="ui-content">
-   <a href="#creditnotes-menu" class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide" autofocus>Gutscheine</a>
-   <a href="#profile"          class="ui-btn ui-icon-user    ui-btn-icon-right" data-transition="slide"          >Profil</a>
-   <a href="#memberlists"      class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide"          >Mitgliederlisten</a>
+   <a href="#creditnotes-menu" class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide" autofocus>Meine Gutscheine</a>
+   <a href="#profile"          class="ui-btn ui-icon-user    ui-btn-icon-right" data-transition="slide"          >Mein Profil</a>
+   <a href="#memberlists-menu"      class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide"          >Mitgliederlisten</a>
    <a href="#faq"              class="ui-btn ui-icon-bullets ui-btn-icon-right" data-transition="slide"          >FAQ</a>
   </div>
 
-  <div data-role="footer" data-theme="b" data-position="fixed">
+  <div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
 			<ul>
 				<li style="text-align: center;"><a href="#"             class="ui-btn ui-btn-inline ui-icon-info ui-btn-icon-right ui-corner-all"  data-transition="flow" data-direction="reverse">Info</a></li>
 			</ul>
 		</div>
   </div>
-</div> 
-
-
-
+</div>
 <!--
 //*************************************************************************************************************************************************
 // SELECT CREDITNOTE 
@@ -280,7 +294,9 @@
 	  
 	  <?php include('footer.html');?>
 	</div> 
-	
+<!--
+********************************************************************************************************
+-->
 		<div data-role="page" id="creditnotes-list">
 			<?php include('header.html');?>
 
@@ -296,7 +312,9 @@
 
 		  <?php include('footer.html');?>
 		</div> 	
-	
+<!--
+********************************************************************************************************
+-->
 			<div data-role="page" id="creditnote">
 				<?php include('header.html');?>
 						  
@@ -330,7 +348,9 @@
 
 		  <?php include('footer.html');?>
 		</div> 
-
+<!--
+********************************************************************************************************
+-->
 			<div data-role="page" id="creditnote-publish">
 				<?php include('header.html');?>
 
@@ -371,10 +391,7 @@
  			  </div>
 
 			  <?php include('footer.html');?>
-			</div> 				
-			
-		
-
+			</div>
 <!--			
 //*************************************************************************************************************************************************
 // PAY WITH SELECTED CREDITNOTE BY SELECTING A RECEIVER AND DETERMINE A PURPOSE 
@@ -393,7 +410,9 @@
 
 				  <?php include('footer.html');?>
 				</div> 
-				
+<!--
+********************************************************************************************************
+-->
 					<div data-role="page" id="pay-member">
 						<?php include('header.html');?>
 						  
@@ -436,7 +455,9 @@
 
 						<?php include('footer.html');?>
 					</div> 
-
+<!--
+********************************************************************************************************
+-->
 						<div data-role="page" id="pay-amount">
 							<?php include('header.html');?>
 							
@@ -462,9 +483,6 @@
 
 								<?php include('footer.html');?>
 							</div> 
-							
-
-	
 <!--			
 //*************************************************************************************************************************************************
 // TRANSACTIONS SOW 
@@ -522,10 +540,7 @@
 				  </div>
 
 				  <?php include('footer.html');?>
-				</div> 	
-
-	
-						
+				</div> 						
 <!--			
 //*************************************************************************************************************************************************
 // SHOW PROFILE 
@@ -554,8 +569,6 @@
 
 		<?php include('footer.html');?>
 	</div> 
-
-
 <!--
 //*************************************************************************************************************************************************
 // SELECT MEMBER 
@@ -580,16 +593,18 @@
 
 		  <div data-role="main" class="ui-content">
 			<form class="ui-filterable">
-				<input id="members-filter" data-type="search">
+				<input class="members-filter" data-type="search">
 			</form>
-			<ul data-role="listview" id="list-members" data-filter="true" data-input="#members-filter" data-autodividers="true" data-inset="true">
+			<ul data-role="listview" id="list-members" data-filter="true" data-input=".members-filter" data-autodividers="true" data-inset="true">
 				<!-- is filled from DB//-->
 			</ul>
 		  </div>
 
 		  <?php include('footer.html');?>
 		</div> 	
-	
+<!--
+********************************************************************************************************
+-->	
 			<div data-role="page" id="member">
 				<?php include('header.html');?>
 						  
@@ -611,32 +626,51 @@
 			  <?php include('footer.html');?>
 			</div>			
 	
-	
-
-
-	
-	
 <!--			
 //*************************************************************************************************************************************************
-// SELECT MEMBER 
+// SELECT MEMBERLIST 
 //*************************************************************************************************************************************************  
 //-->	
 	<div data-role="page" id="memberlists-menu">
 		<?php include('header.html');?>
 
 		<div data-role="main" class="ui-content">
+<!--
 			<a href="#" id="btn-members-known"		class="ui-btn ui-icon-grid ui-btn-icon-right">bekannte Mitglieder</a>
+
+
 			<a href="#" id="btn-suppliers" 			class="ui-btn ui-icon-grid ui-btn-icon-right">Lieferanten</a>
 			<a href="#" id="btn-customers"			class="ui-btn ui-icon-grid ui-btn-icon-right">Kunden</a>
-			<a href="#" id="btn-debtors"			class="ui-btn ui-icon-grid ui-btn-icon-right">Schuldner</a>
-			<a href="#" id="btn-creditors"			class="ui-btn ui-icon-grid ui-btn-icon-right">Gläubiger</a>
+-->
+			<a href="#" id="btn-debtors"			class="ui-btn ui-icon-grid ui-btn-icon-right">
+				Schuldner-Liste<br>
+				<span style="font-size:77%;">Mitglieder deren Gutscheine ich haben</span>
+			</a>
+			<a href="#" id="btn-creditors"			class="ui-btn ui-icon-grid ui-btn-icon-right">
+				Gläubiger-Liste<br>
+				<span style="font-size:77%;">Mitglieder die meine Guscheine haben</span>
+			</a>
+
+			<form class="ui-filterable">
+				<input class="members-filter" data-type="search" placeholder="Bitte Mitgliedsname eingenben">
+			</form>
+			<ul data-role="listview" id="list-members" data-filter="true" data-input=".members-filter" data-autodividers="true" data-inset="true">
+				<!-- is filled from DB//-->
+			</ul>
+<!--
 			<a href="#" id="btn-members-unknown"	class="ui-btn ui-icon-grid ui-btn-icon-right">unbekannte Mitglieder</a>
-			<a href="#" id="btn-members-all" 		class="ui-btn ui-icon-grid ui-btn-icon-right">alle Mitglieder</a>  
+			<a href="#" id="btn-members-all" 		class="ui-btn ui-icon-grid ui-btn-icon-right">alle Mitglieder</a> 
+--> 
 		</div>
+
+
+
 
 		<?php include('footer.html');?>
 	</div> 
-
+<!--
+********************************************************************************************************
+-->
 		<div data-role="page" id="memberlist">
 		  <div data-role="header" data-theme="b" data-position="fixed">
 			<div data-role="navbar">
@@ -673,7 +707,9 @@
 
 			<?php include('footer.html');?>
 		</div> 	
-	
+<!--
+********************************************************************************************************
+-->
 		<div data-role="page" id="debtors">
 		  <div data-role="header" data-theme="b" data-position="fixed">
 			<div data-role="navbar">
@@ -710,7 +746,9 @@
 
 			<?php include('footer.html');?>
 		</div> 
-
+<!--
+********************************************************************************************************
+-->
 		<div data-role="page" id="creditors">
 		  <div data-role="header" data-theme="b" data-position="fixed">
 			<div data-role="navbar">
@@ -748,7 +786,9 @@
 
 			<?php include('footer.html');?>
 		</div> 
-
+<!--
+********************************************************************************************************
+-->
 		<div data-role="page" id="suppliers">
 		  <div data-role="header" data-theme="b" data-position="fixed">
 			<div data-role="navbar">
@@ -789,7 +829,9 @@
 
 			<?php include('footer.html');?>
 		</div> 
-
+<!--
+********************************************************************************************************
+-->
 		<div data-role="page" id="customers">
 		  <div data-role="header" data-theme="b" data-position="fixed">
 			<div data-role="navbar">
@@ -828,7 +870,9 @@
 
 			<?php include('footer.html');?>
 		</div> 
-
+<!--
+********************************************************************************************************
+-->
 		<div data-role="page" id="members-known">
 		  <div data-role="header" data-theme="b" data-position="fixed">
 			<div data-role="navbar">
@@ -925,7 +969,9 @@
 
 			<?php include('footer.html');?>
 		</div> 
-
+<!--
+********************************************************************************************************
+-->
 		<div data-role="page" id="members-all">
 		  <div data-role="header" data-theme="b" data-position="fixed">
 			<div data-role="navbar">
@@ -984,7 +1030,9 @@
 
 			<?php include('footer.html');?>
 		</div> 
-
+<!--
+********************************************************************************************************
+-->
 			<div data-role="page" id="member">
 			  <div data-role="header" data-theme="b" data-position="fixed">
 				<div data-role="navbar">
@@ -1049,7 +1097,9 @@
 
 				<?php include('footer.html');?>
 			</div> 
-					
+<!--
+********************************************************************************************************
+-->					
 				<div data-role="page" id="member-creditnote">
 				  <div data-role="header" data-theme="b" data-position="fixed">
 					<div data-role="navbar">
