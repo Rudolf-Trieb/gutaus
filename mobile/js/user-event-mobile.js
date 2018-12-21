@@ -1746,17 +1746,20 @@ $(document).ready(function(){
 
 
 						$(".members-filter").keyup(function(e){
-							if (e.which==13 || $(".members-filter").val().length>2){ // Enter Key
-								if (gutaus.members.chosen=='searched') {
-									if (!gutaus.members.get()) {
+							if (e.which==13 || $(".members-filter").val().length>2){ // Enter Key or input larger than two characters
+								if (gutaus.members.chosen=='searched') { // what kind of Member are you
+									gutaus.members.get(); // 
+
+									if (gutaus.members.searched==0) { // if no members were found in database
 										alert("Es gibt keien Mitglieder die mit den Buchstaben "+$(".members-filter").val()+" beginnen! Bitte suchen Sie mit ander Anfangsbuchstaben.");
+										return false; // no members were found in database
 									};
 
 									//$(".members-filter").blur();
 								}
 								//$(".gutaus-btn-next").trigger( "focus" );
 								gutaus.user_data.validate_user_input();
-								return false;
+								return true; // members were found in database
 							}	
 							else if (e.which==32) { // Space Key
 									return false;
