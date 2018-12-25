@@ -41,7 +41,7 @@
 // LOGIN LOGOUT REGISTRATION
 //*************************************************************************************************************************************************	
 //-->
-<div data-role="page" id="main-logged-out" data-theme="a">
+<div data-role="page" id="page-logged-out-menu" data-theme="a">
   <div data-role="header"  data-position="fixed" data-position="fixed">
 	<div data-role="navbar">
 	  <ul>
@@ -65,9 +65,9 @@
 	</div>
   </div>
   <div data-role="main" class="ui-content" style="position: relative;top: 45px;">
-	<a href="#login" class="ui-btn ui-icon-edit ui-btn-icon-right" data-transition="flip" autofocus>LOGIN</a>
-	<a href="#faq" class="ui-btn ui-icon-bullets ui-btn-icon-right" data-transition="slide">FAQ</a>
-	<a href="#registration" class="ui-btn ui-icon-edit ui-btn-icon-right" data-transition="slide">REGISTRIERUNG</a>
+	<a href="#page-login" class="ui-btn ui-icon-edit ui-btn-icon-right" data-transition="flip" autofocus>LOGIN</a>
+	<a href="#page-faq" class="ui-btn ui-icon-bullets ui-btn-icon-right" data-transition="slide">FAQ</a>
+	<a href="#page-registration" class="ui-btn ui-icon-edit ui-btn-icon-right" data-transition="slide">REGISTRIERUNG</a>
   </div>
 
   <div data-role="footer" data-position="fixed">
@@ -81,7 +81,7 @@
 <!--
 ********************************************************************************************************
 -->
-<div data-role="page" id="login" data-theme="a" >
+<div data-role="page" id="page-login" data-theme="a" >
   <div data-role="header" data-position="fixed" data-position="fixed">
 	  
 		<div data-role="navbar">
@@ -126,7 +126,7 @@
 	  <ul>	
 		<li style="text-align: center;"><a href="#" class="ui-btn ui-btn-inline ui-icon-info ui-btn-icon-right ui-corner-all" data-transition="slide" data-direction="reverse">Info</a></li>
 		<li style="text-align: center;">Sie sind nicht eingeloggt!</li>
-		<li style="text-align: center;"><a href="#main-logged-out" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-right ui-corner-all" data-transition="slide" data-direction="reverse">Back</a></li>
+		<li style="text-align: center;"><a href="#page-logged-out-menu" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-right ui-corner-all" data-transition="slide" data-direction="reverse">Back</a></li>
 		</ul>
 	</div>
   </div>
@@ -136,7 +136,7 @@
 <!--
 ********************************************************************************************************
 -->
-<div data-role="page" id="registration" data-theme="a" >
+<div data-role="page" id="page-registration" data-theme="a" >
   <div data-role="header" data-position="fixed" data-position="fixed">
 	  
 		<div data-role="navbar">
@@ -186,13 +186,13 @@
   <div data-role="footer" data-position="fixed">
     <h1>Sie sind nicht eingeloggt</h1>
 	<a href="#" class="ui-btn ui-btn-inline ui-icon-info ui-btn-icon-bottom  ui-corner-all" data-transition="flow" data-direction="reverse">Info</a>
-	<a href="#main-logged-out" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-bottom ui-corner-all" data-transition="slide" data-direction="reverse" data-iconpos="left">Back</a>
+	<a href="#page-logged-out-menu" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-bottom ui-corner-all" data-transition="slide" data-direction="reverse" data-iconpos="left">Back</a>
   </div> 
 </div>
 <!--
 ********************************************************************************************************
 -->
-<div data-role="page" id="registration-confirm" data-theme="a">
+<div data-role="page" id="page-registration-confirm" data-theme="a">
   <div data-role="header" data-position="fixed" data-position="fixed">
 	  
 		<div data-role="navbar">
@@ -227,7 +227,7 @@
   <div data-role="footer" data-theme="b" data-position="fixed">
     <h1>Sie sind nicht eingeloggt</h1>
 	<a href="#" class="ui-btn ui-btn-inline ui-icon-info ui-btn-icon-bottom  ui-corner-all" data-transition="flow" data-direction="reverse">Info</a>
-	<a href="#registration" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-bottom ui-corner-all" data-transition="slide" data-direction="reverse" data-iconpos="left">Back</a>
+	<a href="#page-registration" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-bottom ui-corner-all" data-transition="slide" data-direction="reverse" data-iconpos="left">Back</a>
   </div> 
 </div>
 <!--
@@ -235,7 +235,7 @@
 ***** now user is logged in ******************************************************************************
 *********************************************************************************************************
 -->
-<div data-role="page" id="main" style="clear: both;">
+<div data-role="page" id="page-logged-in-menu" style="clear: both;">
   <div data-role="header" data-theme="b" data-position="fixed">
 	<div data-role="navbar">
 	  <ul>
@@ -261,10 +261,10 @@
   </div>
 
   <div data-role="main" class="ui-content">
-	   <a href="#creditnotes-menu" class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide" autofocus>Meine Gutscheine</a>
-	   <a href="#profile"          class="ui-btn ui-icon-user    ui-btn-icon-right" data-transition="slide"          >Mein Profil</a>
-	   <a href="#memberlists-menu"      class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide"          >Mitgliederlisten</a>
-	   <a href="#faq"              class="ui-btn ui-icon-bullets ui-btn-icon-right" data-transition="slide"          >FAQ</a>
+	   <a href="#page-creditnotes-menu" class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide" autofocus>Meine Gutscheine</a>
+	   <a href="#page-profile"          class="ui-btn ui-icon-user    ui-btn-icon-right" data-transition="slide"          >Mein Profil</a>
+	   <a href="#page-memberlists-menu"      class="ui-btn ui-icon-carat-r ui-btn-icon-right" data-transition="slide"          >Mitgliederlisten</a>
+	   <a href="#page-faq"              class="ui-btn ui-icon-bullets ui-btn-icon-right" data-transition="slide"          >FAQ</a>
    	</div>
 
   <div data-role="footer" data-position="fixed">
@@ -280,7 +280,7 @@
 // SELECT CREDITNOTE 
 //*************************************************************************************************************************************************	
 //-->
-	<div data-role="page" id="creditnotes-menu">
+	<div data-role="page" id="page-creditnotes-menu">
 		<?php include('header.html');?>
 		
 	  <div data-role="main" class="ui-content">
@@ -296,7 +296,7 @@
 <!--
 ********************************************************************************************************
 -->
-		<div data-role="page" id="creditnotes-list">
+		<div data-role="page" id="page-creditnotes-list">
 			<?php include('header.html');?>
 
 		  <div data-role="main" class="ui-content">
@@ -304,8 +304,8 @@
 				<input id="creditnotes-filter" data-type="search">
 			</form>
 			<ul data-role="listview" id="list-creditnotes" data-filter="true" data-input="#creditnotes-filter" data-autodividers="true" data-inset="true">
-				<li><a href="#creditnote" onclick="chosen_creditnote('Amet-Euro')">Amet-Euro</a></li>
-				<li><a href="#creditnote" onclick="chosen_creditnote('Amet-Zeit-Taler')">Amet-Zeit-Taler</a></li>
+				<li><a href="#page-creditnote-menu" onclick="chosen_creditnote('Amet-Euro')">Amet-Euro</a></li>
+				<li><a href="#page-creditnote-menu" onclick="chosen_creditnote('Amet-Zeit-Taler')">Amet-Zeit-Taler</a></li>
 			</ul>	
 		  </div>
 
@@ -314,7 +314,7 @@
 <!--
 ********************************************************************************************************
 -->
-			<div data-role="page" id="creditnote">
+			<div data-role="page" id="page-creditnote-menu">
 				<?php include('header.html');?>
 						  
 			  <div data-role="main" class="ui-content">
@@ -337,14 +337,14 @@
 <!--		
 *******************************************************************************************************
 -->
-		<div data-role="page" id="creditnotes-publish">
+		<div data-role="page" id="page-creditnote-publish-menu">
 			<?php include('header.html');?>
 
 		  <div data-role="main" class="ui-content">
-		   <a href="#creditnote-publish" id="btn-creditnote-publish-euro"    class="ui-btn ui-icon-carat-r ui-btn-icon-right creditnote" autofocus><span class="username"></span>-Euro</a>
-		   <a href="#creditnote-publish" id="btn-creditnote-publish-minuto"  class="ui-btn ui-icon-carat-r ui-btn-icon-right creditnote"          ><span class="username"></span>-Minuto</a>
-		   <a href="#creditnote-publish" id="btn-creditnote-publish-goods"   class="ui-btn ui-icon-carat-r ui-btn-icon-right creditnote"          > Waren-Gutschein</a>
-		   <a href="#creditnote-publish" id="btn-creditnote-publish-service" class="ui-btn ui-icon-carat-r ui-btn-icon-right creditnote"          > Diensleistungs-Gutschein</a>
+		   <a href="#page-creditnote-publish" id="btn-creditnote-publish-euro"    class="ui-btn ui-icon-carat-r ui-btn-icon-right creditnote" autofocus><span class="username"></span>-Euro</a>
+		   <a href="#page-creditnote-publish" id="btn-creditnote-publish-minuto"  class="ui-btn ui-icon-carat-r ui-btn-icon-right creditnote"          ><span class="username"></span>-Minuto</a>
+		   <a href="#page-creditnote-publish" id="btn-creditnote-publish-goods"   class="ui-btn ui-icon-carat-r ui-btn-icon-right creditnote"          > Waren-Gutschein</a>
+		   <a href="#page-creditnote-publish" id="btn-creditnote-publish-service" class="ui-btn ui-icon-carat-r ui-btn-icon-right creditnote"          > Diensleistungs-Gutschein</a>
 		  </div>
 
 		  <?php include('footer.html');?>
@@ -352,7 +352,7 @@
 <!--
 ********************************************************************************************************
 -->
-			<div data-role="page" id="creditnote-publish">
+			<div data-role="page" id="page-creditnote-publish">
 				<?php include('header.html');?>
 
 			  <div data-role="main" class="ui-content">
@@ -398,7 +398,7 @@
 // PAY WITH SELECTED CREDITNOTE BY SELECTING A RECEIVER AND DETERMINE A PURPOSE 
 //*************************************************************************************************************************************************  
 //-->		
-				<div data-role="page" id="pay">
+				<div data-role="page" id="page-pay-to-menu">
 					<?php include('header.html');?>
 				
 				  <div data-role="main" class="ui-content">
@@ -429,7 +429,7 @@
 						<?php include('footer.html');?>
 					</div> 
 
-					<div data-role="page" id="pay-email">
+					<div data-role="page" id="page-pay-email">
 					  <?php include('header.html');?>
 					  
 					  <div data-role="main" class="ui-content">
@@ -443,14 +443,16 @@
 
 						<?php include('footer.html');?>
 					</div> 
-
-					<div data-role="page" id="pay-mobile">
+<!--
+********************************************************************************************************
+-->
+					<div data-role="page" id="page-pay-mobile">
 						<?php include('header.html');?>
 						
 					  <div data-role="main" class="ui-content">
-					  <form id="pay-mob" data-ajax="false">
-							<label for="pay-mob" class="ui-hidden-accessible">Handynummer:</label>
-							<input type="text" id="input-mobile-receiver" name="pay-mob" id="pay-mop" placeholder="00491738469121" data-clear-btn="true" autofocus>
+					  <form id="form-pay-mobile" data-ajax="false">
+							<label for="input-pay-mobile" class="ui-hidden-accessible">Handynummer:</label>
+							<input type="text"  name="pay-mob" id="input-pay-mobile" placeholder="00491738469121" data-clear-btn="true" autofocus>
 						</form> 
 					  </div>
 
@@ -459,7 +461,7 @@
 <!--
 ********************************************************************************************************
 -->
-						<div data-role="page" id="pay-amount">
+						<div data-role="page" id="page-pay-amount">
 							<?php include('header.html');?>
 							
 						  <div data-role="main" class="ui-content">
@@ -472,7 +474,7 @@
 							<?php include('footer.html');?>
 						</div> 
 
-							<div data-role="page" id="pay-purpose">
+							<div data-role="page" id="page-pay-purpose">
 								<?php include('header.html');?>
 							
 							  <div data-role="main" class="ui-content">
@@ -489,7 +491,7 @@
 // TRANSACTIONS SOW 
 //*************************************************************************************************************************************************  
 //-->	
-				<div data-role="page" id="transactions-table">
+				<div data-role="page" id="page-transactions-table">
 					<?php include('header.html');?>
 
 				  <div data-role="main" class="ui-content">
@@ -544,16 +546,16 @@
 				</div> 						
 <!--			
 //*************************************************************************************************************************************************
-// SHOW PROFILE 
+// SHOW PAGE-PROFILE 
 //*************************************************************************************************************************************************  
 //-->																			
-	<div data-role="page" id="profile">
+	<div data-role="page" id="page-profile">
 	  <div data-role="header" data-theme="b" data-position="fixed" data-theme="b">
 		<div data-role="navbar">
 		  <ul>
 				<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 				<li style="text-align: center;">GuTauS</li>
-				<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+				<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 		  </ul>
 		</div>
 		<div data-role="navbar">
@@ -589,14 +591,14 @@
 	  <?php include('footer.html');?>
 	</div> 
 	
-		<div data-role="page" id="members-list">
+		<div data-role="page" id="page-members-list">
 			<?php include('header.html');?>
 
 		  <div data-role="main" class="ui-content">
 			<form class="ui-filterable">
 				<input id="members-filter-pay-to" data-type="search" placeholder="Bitte Mitgliedsname eingenben">
 			</form>
-			<ul data-role="listview" id="list-members" data-filter="true" data-input="#members-filter-pay-to" data-autodividers="true" data-inset="true">
+			<ul data-role="listview" id="list-members-pay-to" data-filter="true" data-input="#members-filter-pay-to" data-autodividers="true" data-inset="true">
 				<!-- is filled from DB//-->
 			</ul>
 		  </div>
@@ -632,7 +634,7 @@
 // SELECT MEMBERLIST 
 //*************************************************************************************************************************************************  
 //-->	
-	<div data-role="page" id="memberlists-menu">
+	<div data-role="page" id="page-memberlists-menu">
 		<?php include('header.html');?>
 
 		<div data-role="main" class="ui-content">
@@ -678,7 +680,7 @@
 			  <ul>
 					<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 					<li style="text-align: center;">GuTauS</li>
-					<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+					<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 			  </ul>
 			</div>
 			<div data-role="navbar">
@@ -691,18 +693,18 @@
 
 		  <div data-role="main" class="ui-content">
 			<form class="ui-filterable">
-				<input id="debtors-filter" data-type="search" autofocus>
+				<input id="input-debtors-filter" data-type="search" autofocus>
 			</form>			  
-			<ul data-role="listview" data-filter="true" data-input="#debtors-filter" data-autodividers="true" data-inset="true">
-				<li><a href="#pay-amount" class="receiver">Ali</a></li>
-				<li><a href="#pay-amount" class="receiver">Amet</a></li>
-				<li><a href="#pay-amount" class="receiver">Lore</a></li>
-				<li><a href="#pay-amount" class="receiver">Marco</a></li>
-				<li><a href="#pay-amount" class="receiver">Rudi</a></li>
-				<li><a href="#pay-amount" class="receiver">Sandra</a></li>
-				<li><a href="#pay-amount" class="receiver">Valmir</a></li>
-				<li><a href="#pay-amount" class="receiver">Vesel</a></li>
-				<li><a href="#pay-amount" class="receiver">Yasar</a></li>
+			<ul data-role="listview" data-filter="true" data-input="#input-debtors-filter" data-autodividers="true" data-inset="true">
+				<li><a href="#page-pay-amount" class="receiver">Ali</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Amet</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Lore</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Marco</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Rudi</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Sandra</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Valmir</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Vesel</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Yasar</a></li>
 			 </ul>						  
 		  </div>
 
@@ -717,7 +719,7 @@
 			  <ul>
 					<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 					<li style="text-align: center;">GuTauS</li>
-					<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+					<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 			  </ul>
 			</div>
 			<div data-role="navbar">
@@ -733,15 +735,15 @@
 				<input id="debtors-filter" data-type="search" autofocus>
 			</form>			  
 			<ul data-role="listview" data-filter="true" data-input="#debtors-filter" data-autodividers="true" data-inset="true">
-				<li><a href="#pay-amount" class="receiver">Ali</a></li>
-				<li><a href="#pay-amount" class="receiver">Amet</a></li>
-				<li><a href="#pay-amount" class="receiver">Lore</a></li>
-				<li><a href="#pay-amount" class="receiver">Marco</a></li>
-				<li><a href="#pay-amount" class="receiver">Rudi</a></li>
-				<li><a href="#pay-amount" class="receiver">Sandra</a></li>
-				<li><a href="#pay-amount" class="receiver">Valmir</a></li>
-				<li><a href="#pay-amount" class="receiver">Vesel</a></li>
-				<li><a href="#pay-amount" class="receiver">Yasar</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Ali</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Amet</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Lore</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Marco</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Rudi</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Sandra</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Valmir</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Vesel</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Yasar</a></li>
 			 </ul>						  
 		  </div>
 
@@ -756,7 +758,7 @@
 			  <ul>
 					<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 					<li style="text-align: center;">GuTauS</li>
-					<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+					<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 			  </ul>
 			</div>
 			<div data-role="navbar">
@@ -772,16 +774,16 @@
 				<input id="creditors-filter" data-type="search" autofocus>
 			</form>			  
 			<ul data-role="listview" data-filter="true" data-input="#creditors-filter" data-autodividers="true" data-inset="true">
-				<li><a href="#pay-amount" class="receiver">Adrian</a></li>
-				<li><a href="#pay-amount" class="receiver">Amet</a></li>
-				<li><a href="#pay-amount" class="receiver">Liana</a></li>
-				<li><a href="#pay-amount" class="receiver">Marco</a></li>
-				<li><a href="#pay-amount" class="receiver">Olga</a></li>
-				<li><a href="#pay-amount" class="receiver">Sabine</a></li>
-				<li><a href="#pay-amount" class="receiver">Sandra</a></li>
-				<li><a href="#pay-amount" class="receiver">Uli</a></li>
-				<li><a href="#pay-amount" class="receiver">Valdrin</a></li>
-				<li><a href="#pay-amount" class="receiver">Vesel</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Adrian</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Amet</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Liana</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Marco</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Olga</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Sabine</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Sandra</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Uli</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Valdrin</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Vesel</a></li>
 			 </ul>						  
 		  </div>
 
@@ -796,7 +798,7 @@
 			  <ul>
 					<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 					<li style="text-align: center;">GuTauS</li>
-					<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+					<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 			  </ul>
 			</div>
 			<div data-role="navbar">
@@ -812,18 +814,18 @@
 				<input id="suppliers-filter" data-type="search" autofocus>
 			</form>
 			<ul data-role="listview" data-filter="true" data-input="#suppliers-filter" data-autodividers="true" data-inset="true">
-				<li><a href="#pay-amount" class="receiver">Ali</a></li>
-				<li><a href="#pay-amount" class="receiver">Amet</a></li>
-				<li><a href="#pay-amount" class="receiver">Liana</a></li>
-				<li><a href="#pay-amount" class="receiver">Lore</a></li>
-				<li><a href="#pay-amount" class="receiver">Marco</a></li>
-				<li><a href="#pay-amount" class="receiver">Rudi</a></li>
-				<li><a href="#pay-amount" class="receiver">Sabine</a></li>
-				<li><a href="#pay-amount" class="receiver">Sandra</a></li>
-				<li><a href="#pay-amount" class="receiver">Uli</a></li>
-				<li><a href="#pay-amount" class="receiver">Valdrin</a></li>
-				<li><a href="#pay-amount" class="receiver">Verena</a></li>
-				<li><a href="#pay-amount" class="receiver">Vesel</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Ali</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Amet</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Liana</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Lore</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Marco</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Rudi</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Sabine</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Sandra</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Uli</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Valdrin</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Verena</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Vesel</a></li>
 			 </ul>		
 		  
 		  </div>
@@ -839,7 +841,7 @@
 			  <ul>
 					<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 					<li style="text-align: center;">GuTauS</li>
-					<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+					<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 			  </ul>
 			</div>
 			<div data-role="navbar">
@@ -855,17 +857,17 @@
 				<input id="customers-filter" data-type="search" autofocus>
 			</form>
 			<ul data-role="listview" data-filter="true" data-input="#customers-filter" data-autodividers="true" data-inset="true">
-				<li><a href="#pay-amount" class="receiver">Adrian</a></li>
-				<li><a href="#pay-amount" class="receiver">Ali</a></li>
-				<li><a href="#pay-amount" class="receiver">Klaus</a></li>
-				<li><a href="#pay-amount" class="receiver">Amet</a></li>
-				<li><a href="#pay-amount" class="receiver">Marco</a></li>
-				<li><a href="#pay-amount" class="receiver">Olga</a></li>
-				<li><a href="#pay-amount" class="receiver">Sandra</a></li>
-				<li><a href="#pay-amount" class="receiver">Uli</a></li>
-				<li><a href="#pay-amount" class="receiver">Valdrin</a></li>
-				<li><a href="#pay-amount" class="receiver">Verena</a></li>
-				<li><a href="#pay-amount" class="receiver">Yasar</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Adrian</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Ali</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Klaus</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Amet</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Marco</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Olga</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Sandra</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Uli</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Valdrin</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Verena</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Yasar</a></li>
 			 </ul>					  
 		  </div>
 
@@ -880,7 +882,7 @@
 			  <ul>
 					<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 					<li style="text-align: center;">GuTauS</li>
-					<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+					<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 			  </ul>
 			</div>
 			<div data-role="navbar">
@@ -905,36 +907,38 @@
 				<input id="members-known-filter" data-type="search">
 			</form>
 			<ul data-role="listview" id="list-members-known" data-filter="true" data-input="#members-known-filter" data-autodividers="true" data-inset="true">
-				<li><a href="#pay-amount" class="receiver">Adrian</a></li>
-				<li><a href="#pay-amount" class="receiver">Ali</a></li>
-				<li><a href="#pay-amount" class="receiver">Klaus</a></li>
-				<li><a href="#pay-amount" class="receiver">Amet</a></li>
-				<li><a href="#pay-amount" class="receiver">Liana</a></li>
-				<li><a href="#pay-amount" class="receiver">Lore</a></li>
-				<li><a href="#pay-amount" class="receiver">Marco</a></li>
-				<li><a href="#pay-amount" class="receiver">Olga</a></li>
-				<li><a href="#pay-amount" class="receiver">Rudi</a></li>
-				<li><a href="#pay-amount" class="receiver">Sabine</a></li>
-				<li><a href="#pay-amount" class="receiver">Sandra</a></li>
-				<li><a href="#pay-amount" class="receiver">Uli</a></li>
-				<li><a href="#pay-amount" class="receiver">Valdrin</a></li>
-				<li><a href="#pay-amount" class="receiver">Valmir</a></li>
-				<li><a href="#pay-amount" class="receiver">Verena</a></li>
-				<li><a href="#pay-amount" class="receiver">Vesel</a></li>
-				<li><a href="#pay-amount" class="receiver">Yasar</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Adrian</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Ali</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Klaus</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Amet</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Liana</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Lore</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Marco</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Olga</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Rudi</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Sabine</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Sandra</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Uli</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Valdrin</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Valmir</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Verena</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Vesel</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Yasar</a></li>
 			 </ul>			  			  			  
 		  </div>
 
 			<?php include('footer.html');?>
 		</div> 
-
+<!--
+********************************************************************************************************
+-->
 		<div data-role="page" id="members-unknown">
 		  <div data-role="header" data-theme="b" data-position="fixed">
 			<div data-role="navbar">
 			  <ul>
 					<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 					<li style="text-align: center;">GuTauS</li>
-					<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+					<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 			  </ul>
 			</div>
 			<div data-role="navbar">
@@ -950,20 +954,20 @@
 				<input id="members-unknown-filter" data-type="search" autofocus>
 			</form>			  
 			<ul data-role="listview" data-filter="true" data-input="#members-unknown-filter" data-autodividers="true" data-inset="true">
-				<li><a href="#pay-amount" class="receiver">Adele</a></li>
-				<li><a href="#pay-amount" class="receiver">Agnes</a></li>
-				<li><a href="#pay-amount" class="receiver">Albert</a></li>
-				<li><a href="#pay-amount" class="receiver">Billy</a></li>
-				<li><a href="#pay-amount" class="receiver">Bob</a></li>
-				<li><a href="#pay-amount" class="receiver">Calvin</a></li>
-				<li><a href="#pay-amount" class="receiver">Cameron</a></li>
-				<li><a href="#pay-amount" class="receiver">Chloe</a></li>
-				<li><a href="#pay-amount" class="receiver">Christina</a></li>
-				<li><a href="#pay-amount" class="receiver">Diana</a></li>
-				<li><a href="#pay-amount" class="receiver">Gabriel</a></li>
-				<li><a href="#pay-amount" class="receiver">Glen</a></li>
-				<li><a href="#pay-amount" class="receiver">Ralph</a></li>
-				<li><a href="#pay-amount" class="receiver">Valarie</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Adele</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Agnes</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Albert</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Billy</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Bob</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Calvin</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Cameron</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Chloe</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Christina</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Diana</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Gabriel</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Glen</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Ralph</a></li>
+				<li><a href="#page-pay-amount" class="receiver">Valarie</a></li>
 			 </ul>
 		  
 		  </div>
@@ -979,7 +983,7 @@
 			  <ul>
 					<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 					<li style="text-align: center;">GuTauS</li>
-					<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+					<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 			  </ul>
 			</div>
 			<div data-role="navbar">
@@ -995,37 +999,37 @@
 					<input id="members-all-filter" data-type="search" autofocus>
 				</form>			  
 				<ul data-role="listview" data-filter="true" data-input="#members-all-filter" data-autodividers="true" data-inset="true">
-					<li><a href="#pay-amount" class="receiver">Adele</a></li>
-					<li><a href="#pay-amount" class="receiver">Adrian</a></li>
-					<li><a href="#pay-amount" class="receiver">Agnes</a></li>
-					<li><a href="#pay-amount" class="receiver">Albert</a></li>
-					<li><a href="#pay-amount" class="receiver">Ali</a></li>
-					<li><a href="#pay-amount" class="receiver">Billy</a></li>
-					<li><a href="#pay-amount" class="receiver">Bob</a></li>
-					<li><a href="#pay-amount" class="receiver">Calvin</a></li>
-					<li><a href="#pay-amount" class="receiver">Cameron</a></li>
-					<li><a href="#pay-amount" class="receiver">Chloe</a></li>
-					<li><a href="#pay-amount" class="receiver">Christina</a></li>
-					<li><a href="#pay-amount" class="receiver">Diana</a></li>
-					<li><a href="#pay-amount" class="receiver">Gabriel</a></li>
-					<li><a href="#pay-amount" class="receiver">Glen</a></li>
-					<li><a href="#pay-amount" class="receiver">Klaus</a></li>
-					<li><a href="#pay-amount" class="receiver">Amet</a></li>
-					<li><a href="#pay-amount" class="receiver">Liana</a></li>
-					<li><a href="#pay-amount" class="receiver">Lore</a></li>
-					<li><a href="#pay-amount" class="receiver">Marco</a></li>
-					<li><a href="#pay-amount" class="receiver">Olga</a></li>
-					<li><a href="#pay-amount" class="receiver">Ralph</a></li>
-					<li><a href="#pay-amount" class="receiver">Rudi</a></li>
-					<li><a href="#pay-amount" class="receiver">Sabine</a></li>
-					<li><a href="#pay-amount" class="receiver">Sandra</a></li>
-					<li><a href="#pay-amount" class="receiver">Uli</a></li>
-					<li><a href="#pay-amount" class="receiver">Valarie</a></li>
-					<li><a href="#pay-amount" class="receiver">Valdrin</a></li>
-					<li><a href="#pay-amount" class="receiver">Valmir</a></li>
-					<li><a href="#pay-amount" class="receiver">Verena</a></li>
-					<li><a href="#pay-amount" class="receiver">Vesel</a></li>
-					<li><a href="#pay-amount" class="receiver">Yasar</a></li>					
+					<li><a href="#page-pay-amount" class="receiver">Adele</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Adrian</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Agnes</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Albert</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Ali</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Billy</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Bob</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Calvin</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Cameron</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Chloe</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Christina</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Diana</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Gabriel</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Glen</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Klaus</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Amet</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Liana</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Lore</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Marco</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Olga</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Ralph</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Rudi</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Sabine</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Sandra</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Uli</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Valarie</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Valdrin</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Valmir</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Verena</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Vesel</a></li>
+					<li><a href="#page-pay-amount" class="receiver">Yasar</a></li>					
 				 </ul>			  			  			  			
 		  </div>
 
@@ -1040,7 +1044,7 @@
 				  <ul>
 					<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 					<li style="text-align: center;">GuTauS</li>
-					<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+					<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 				  </ul>
 				</div>
 				<div data-role="navbar">
@@ -1107,7 +1111,7 @@
 					  <ul>
 							<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 							<li style="text-align: center;">GuTauS</li>
-							<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+							<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 					  </ul>
 					</div>
 					<div data-role="navbar">
@@ -1119,7 +1123,7 @@
 				  </div>
 
 				  <div data-role="main" class="ui-content">
-					<a href="#pay" class="ui-btn ui-icon-carat-r ui-btn-icon-right" autofocus>bezahle</a> <!-- nur Falls ein Konto dieser Gutscheine --> 
+					<a href="#page-pay-to-menu" class="ui-btn ui-icon-carat-r ui-btn-icon-right" autofocus>bezahle</a> <!-- nur Falls ein Konto dieser Gutscheine --> 
 					<a href="#" class="ui-btn ui-icon-carat-r ui-btn-icon-right">Umsätze</a> <!-- nur Falls ein Konto dieser Gutscheine -->
 					<a href="#" class="ui-btn ui-icon-carat-r ui-btn-icon-right">Wert</a>
 					<a href="#" class="ui-btn ui-icon-carat-r ui-btn-icon-right">meine max. Akzeptanz</a> <!-- nur Falls ein Konto dieser Gutscheine -->
@@ -1137,13 +1141,13 @@
 // SHOW FAQ 
 //*************************************************************************************************************************************************  
 //-->							
-	<div data-role="page" id="faq">
+	<div data-role="page" id="page-faq">
 	  <div data-role="header" data-theme="b" data-position="fixed">
 			<div data-role="navbar">
 			  <ul>
 				<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
 				<li style="text-align: center;">GuTauS</li>
-				<li><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
+				<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
 			  </ul>
 			</div>
 		<h1>FAQ</h1>

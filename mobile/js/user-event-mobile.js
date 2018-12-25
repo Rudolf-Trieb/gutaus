@@ -2,7 +2,6 @@
 // GLOBAL CLASSES
 //*************************************************************************************************************************************************
 
-
 	function GUTAUS () {
 		//PROPERTIES
 	    this.user_data = new USER_DATA();
@@ -30,7 +29,7 @@
 			}
 			else {
 				alert('Fehler: Bitte wählen Sie einen Empfänger für Ihrer Zahlung!');
-				$.mobile.changePage("#pay");
+				$.mobile.changePage("#page-pay-to-menu");
 				return;
 			}
 			
@@ -63,13 +62,13 @@
 						if (typeof pay.errors != 'undefined') {
 							alert(pay.errors);
 							if (gutaus.creditnotes.chosen=='published' || gutaus.creditnotes.chosen=='received') {
-								$.mobile.changePage("#members-list");
+								$.mobile.changePage("#page-members-list");
 							}
 							else if (gutaus.creditnotes.chosen=='email') {
-								$.mobile.changePage("#pay-email");
+								$.mobile.changePage("#page-pay-email");
 							}
 							else if (gutaus.creditnotes.chosen=='mobile') {
-								$.mobile.changePage("#pay-mobile");
+								$.mobile.changePage("#page-pay-mobile");
 							}
 							else{
 								$.mobile.changePage("#pay");
@@ -97,7 +96,7 @@
 					}
 					else { // user isn't logged in
 						alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-						$.mobile.changePage("#main-logtout");							
+						$.mobile.changePage("#page-logged-out-menu");							
 					}
 				},
 				error: function (request,error) {
@@ -150,7 +149,7 @@
 										$(".username").html(gutaus.user_data.name);
 										var avatar_img_tag=gutaus.user_data.avatar_img_tag()
 										$(".avatar").html(avatar_img_tag);
-										$.mobile.changePage("#main");
+										$.mobile.changePage("#page-logged-in-menu");
 									}
 									else {
 										alert ('LOGIN FEHLER: Benutzername oder Passwort falsch !!!');
@@ -163,7 +162,7 @@
 										$(".username").html(gutaus.user_data.name);
 										var avatar_img_tag=gutaus.user_data.avatar_img_tag()
 										$(".avatar").html(avatar_img_tag);
-										$.mobile.changePage("#main");
+										$.mobile.changePage("#page-logged-in-menu");
 									    */
 									}
 							},
@@ -228,7 +227,7 @@
 								}
 								else {
 									alert (response_data.Msg); 
-									$.mobile.changePage("#registration-confirm");
+									$.mobile.changePage("#page-registration-confirm");
 									
 								}
 						},
@@ -270,7 +269,7 @@
 								}
 								else {
 									alert (response_data.Msg); 
-									$.mobile.changePage("#login");
+									$.mobile.changePage("#page-login");
 									
 								}
 						},
@@ -285,7 +284,7 @@
 			this.validate_user_input=function(){
 			
 				var activePage = $.mobile.activePage.attr("id");
-				if (activePage=="pay-email") {
+				if (activePage=="page-pay-email") {
 					gutaus.member_chosen.member.email=$("#input-email-receiver").val().trim();
 					//gutaus.member_chosen.member.email=gutaus.member_chosen.member.email.trim();
 					if(gutaus.member_chosen.validateEmail(gutaus.member_chosen.member.email)) {
@@ -296,28 +295,28 @@
 						$("#input-email-receiver").focus();	
 					}															
 				} 
-				else if (activePage=="pay-mobile") {
-					gutaus.member_chosen.member.mobile=$("#input-mobile-receiver").val().trim();
+				else if (activePage=="page-pay-mobile") {
+					gutaus.member_chosen.member.mobile=$("#input-pay-mobile").val().trim();
 					if(gutaus.member_chosen.validateMobile(gutaus.member_chosen.member.mobile)) {
 						gutaus.member_chosen.get_member_info_belonging_to_mobile(gutaus.member_chosen.member.mobile);
 					}
 					else {
 						alert('Fehler: '+gutaus.member_chosen.member.name+' ist keine Handynummer! Bitte geben Sie nur Zahlen ein und nicht mehr als 15 Ziffern!' );
-						$("#input-mobile-receiver").focus();
+						$("#input-pay-mobile").focus();
 						
 					}			
 				}
-				else if (activePage=="members-list") {
+				else if (activePage=="page-members-list") {
 					gutaus.members.get();
 				}				
 				
 				
 				
-				else if (activePage=="pay-amount") {
+				else if (activePage=="page-pay-amount") {
 					gutaus.creditnote_chosen.pay_amount=runde(Math.abs($("#input-pay-amount").val()),gutaus.creditnote_chosen.decimal_digits);
 					$("#input-pay-amount").val(gutaus.creditnote_chosen.pay_amount);
 					if (gutaus.creditnote_chosen.pay_amount<=gutaus.creditnote_chosen.get_max_buying_power()) {
-						$.mobile.changePage("#pay-purpose");
+						$.mobile.changePage("#page-pay-purpose");
 					}
 					else {
 						alert(unescape("Fehler: Sie k%F6nnen maximal "
@@ -327,11 +326,11 @@
 						+" %FCberweisen!"));			
 					}
 				}
-				else if (activePage=="pay-purpose") {
+				else if (activePage=="page-pay-purpose") {
 					gutaus.creditnote_chosen.pay_purpose=$("#input-pay-purpose").val();
 					gutaus.pay();
 				}
-				else if (activePage=="creditnote-publish") {
+				else if (activePage=="page-creditnote-publish") {
 					gutaus.creditnote_chosen.publish_creditnote();
 				}
 			}
@@ -355,7 +354,7 @@
 					},
 					success: function (logout_success) {
 							//resultObject.formSubmitionResult = result;
-						    $.mobile.changePage("#main-logtout");
+						    $.mobile.changePage("#page-logged-out-menu");
 							if (logout_success) {
 								alert ('Sie haben sich erfolgreich von GuTauS abgemeldet!!!');
 							}
@@ -444,7 +443,7 @@
 						},
 						success: function (str_creditnotes) {					
 							var creditnotes = JSON.parse(str_creditnotes);
-							if (typeof creditnote.login === 'undefined') { // user is logged in
+							if (typeof creditnotes.login === 'undefined') { // user is logged in
 								if(creditnotes.length>0) { // creditnote(s) is(are) received/published
 									if (gutaus.creditnotes.chosen=='received') { // received
 										$("#btn-creditnotes-received").show();
@@ -466,19 +465,19 @@
 										alert('Sie haben noch keine Gutscheine herausgeben! ' 
 										+'Geben Sie jetzt selbst einen von vier möglichen Gutscheinarten heraus '
 										+'und bezahlen Sie damit Freunde, Bekannte oder auch selbst Ihre Handelspartner!');
-										$.mobile.changePage("#creditnotes-publish");
+										$.mobile.changePage("#page-creditnote-publish-menu");
 									}
 									return;
 								}
 							}
-							else { // user isn't logged in
+							else { // user isn't logged in creditnotes.login=false
 								alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-								$.mobile.changePage("#main-logtout");							
+								$.mobile.changePage("#page-logged-out-menu");							
 							}
 						},
 						error: function (request,error) {
 							// This callback function will trigger on unsuccessful action                
-							alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang?');
+							alert('Netzwerkfehler: Auf den GuTauS-Server (Datei '+url+') konnte nicht zugegriffen werden! Haben Sie Internezugang?');
 						}
 					}); 
 				}
@@ -531,7 +530,7 @@
 				});
 				
 				if (gutaus.creditnotes.chosen!="publish") { // // received or published
-					$.mobile.changePage("#creditnotes-list");
+					$.mobile.changePage("#page-creditnotes-list");
 				}
 				else { //publish
 					$('#btn-creditnote-publish-minuto').show();
@@ -542,7 +541,7 @@
 					if (this.creditnote_is_published(gutaus.user_data.name+'-Euro')) { // found User-Euro
 						$('#btn-creditnote-publish-euro').hide();
 					}
-					$.mobile.changePage("#creditnotes-publish");
+					$.mobile.changePage("#page-creditnote-publish-menu");
 				}
 
 			}
@@ -589,7 +588,7 @@
 					success: function (str_creditnote_out_of_DB) {					
 						var creditnote_out_of_DB = JSON.parse(str_creditnote_out_of_DB);
 						if (typeof creditnote_out_of_DB.login === 'undefined') {
-							$(".gutaus-btn-back").attr("href", "#creditnotes-menu");
+							$(".gutaus-btn-back").attr("href", "#page-creditnotes-menu");
 							gutaus.creditnote_chosen.transactions=		false; 
 							gutaus.creditnote_chosen.name=				creditnote_out_of_DB.name;
 							gutaus.creditnote_chosen.account_balance=	runde(parseFloat(creditnote_out_of_DB.account_balance),creditnote_out_of_DB.decimal_digits);
@@ -599,12 +598,12 @@
 							gutaus.creditnote_chosen.credit_limit=		parseFloat(creditnote_out_of_DB.credit_limit);
 							gutaus.creditnote_chosen.acceptance_limit=	parseFloat(creditnote_out_of_DB.acceptance_limit);
 							gutaus.creditnote_chosen.total_turnover=	parseFloat(creditnote_out_of_DB.total_turnover);
-							$.mobile.changePage("#creditnote");
+							$.mobile.changePage("#page-creditnote-menu");
 							gutaus.creditnote_chosen.show();
 						}
 						else {
 							alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-							$.mobile.changePage("#main-logtout");
+							$.mobile.changePage("#page-logged-out-menu");
 						}
 					},
 					error: function (request,error) {
@@ -685,7 +684,7 @@
 				
 				url="./model/creditnote-transactions.php"
 				
-				if (gutaus.creditnote_chosen.transactions==false) { // transactions-tabel to get is not loaded so start loading from DB
+				if (gutaus.creditnote_chosen.transactions==false) { // creditnote_chosen.transactions are not yet loaded so start loading from DB
 					$.ajax({
 						type: "post",
 						url: url,
@@ -717,7 +716,7 @@
 							}
 							else { // user isn't logged in
 								alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-								$.mobile.changePage("#main-logtout");							
+								$.mobile.changePage("#page-logged-out-menu");							
 							}
 						},
 						error: function (request,error) {
@@ -727,8 +726,8 @@
 					}); 
 				}
 
-				else { // transactions-table is loaded show Page direct
-					$.mobile.changePage("#transactions-table");
+				else { // creditnote_chosen.transactions are loaded so not neet to start loading from DB show Page direct
+					$.mobile.changePage("#page-transactions-table");
 				}			
 			
 			}
@@ -784,7 +783,7 @@
 				});
 				$("#tabel-transactions").append("</tbody >");
 				$("#tabel-transactions-creditnote").html(gutaus.creditnote_chosen.name); // set creditnote name in table column 2 
-				$.mobile.changePage("#transactions-table");
+				$.mobile.changePage("#page-transactions-table");
 				$("#tabel-transactions").trigger("create");
 				$("#tabel-transactions").table("refresh");
 
@@ -837,13 +836,13 @@
 								gutaus.creditnotes.chosen='published'
 								gutaus.creditnotes.published=false; // set published empty
 								gutaus.creditnotes.get();
-								//$.mobile.changePage("#creditnotes-list");	
+								//$.mobile.changePage("#page-creditnotes-list");	
 							}
 							
 						}
 						else { // user isn't logged in
 							alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-							$.mobile.changePage("#main-logtout");							
+							$.mobile.changePage("#page-logged-out-menu");							
 						}
 					},
 					error: function (request,error) {
@@ -878,7 +877,7 @@
 				}
 				else if (gutaus.members.chosen=='searched' & typeof(gutaus.members.members_searcheded)=='undefined') { // searched-list is called but not loaded
 					url="./model/members-searched.php";
-					search_str=$.trim($(".members-filter").val())
+					search_str=$.trim($("#members-filter-pay-to").val())
 				}	
 				
 				if (typeof(url)!='undefined') { // Type of members list to search for in DB is set
@@ -929,7 +928,7 @@
 							}
 							else { // user isn't logged in
 								alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-								$.mobile.changePage("#main-logtout");
+								$.mobile.changePage("#page-logged-out-menu");
 								return false; // no member was found in DB							
 							}
 						},
@@ -958,9 +957,9 @@
 				else if (gutaus.members.chosen=='searched') { // searched
 					members=gutaus.members.searched;
 				}
-				$("#list-members").empty(); // clear members-list
+				$("#list-members-pay-to").empty(); // clear members-list
 				$.each(members,function(i,member){ // fill members-list
-					$("#list-members").append("<li><a href='#member' "
+					$("#list-members-pay-to").append("<li><a href='#member' "
 													+"onclick=gutaus.member_chosen.get_member_info_belonging_to_id('"
 													+member.id
 													+"')>"
@@ -968,8 +967,8 @@
 													+"</a></li>");
 				});
 				
-				$.mobile.changePage("#members-list");
-				$("#list-members:visible").listview("refresh");
+				$.mobile.changePage("#page-members-list");
+				$("#list-members-pay-to:visible").listview("refresh");
 				
 			}
 				
@@ -1030,12 +1029,12 @@
 							//gutaus.member_chosen.id=id;
 							gutaus.member_chosen.show();
 							$(".gutaus-btn-back").attr("href", "#pay");
-							$.mobile.changePage("#pay-amount");
+							$.mobile.changePage("#page-pay-amount");
 
 						}
 						else {
 							alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-							$.mobile.changePage("#main-logtout");
+							$.mobile.changePage("#page-logged-out-menu");
 						}
 					},
 					error: function (request,error) {
@@ -1078,7 +1077,7 @@
 											+gutaus.member_chosen.member.name
 											+' !!!'  );
 									gutaus.member_chosen.show();
-									$.mobile.changePage("#pay-amount");
+									$.mobile.changePage("#page-pay-amount");
 								}
 								else { 
 									alert('Die E-Mail-Adresse: '
@@ -1096,14 +1095,14 @@
 								+email
 								+' gesendet!'));
 								gutaus.member_chosen.show();
-								$.mobile.changePage("#pay-amount");
+								$.mobile.changePage("#page-pay-amount");
 							}
 
 
 						}
 						else {
 							alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-							$.mobile.changePage("#main-logtout");
+							$.mobile.changePage("#page-logged-out-menu");
 						}
 					},
 					error: function (request,error) {
@@ -1146,7 +1145,7 @@
 										+gutaus.member_chosen.member.name
 										+' !!!'  );
 									gutaus.member_chosen.show();
-									$.mobile.changePage("#pay-amount");
+									$.mobile.changePage("#page-pay-amount");
 								}
 								else { 
 									alert('Die Hadynummer: '
@@ -1163,12 +1162,12 @@
 									+mobile
 									+' gesendet!'));
 									gutaus.member_chosen.show();
-									$.mobile.changePage("#pay-amount");
+									$.mobile.changePage("#page-pay-amount");
 							}
 						}
 						else {
 							alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-							$.mobile.changePage("#main-logtout");
+							$.mobile.changePage("#page-logged-out-menu");
 						}
 					},
 					error: function (request,error) {
@@ -1249,7 +1248,7 @@ $(document).ready(function(){
 		gutaus.creditnotes.received=false;
 		delete gutaus; 
 		//$(".username").html("");
-		//$.mobile.changePage("#main-logtout");
+		//$.mobile.changePage("#page-logged-out-menu");
 		
 		var url_current=window.location.href
 		url_current = url_current.split('#', 2);
@@ -1284,13 +1283,13 @@ $(document).ready(function(){
          gutaus.user_data.registrate($("#reg-code").val());		
 	});  	
 
-	$(document).on("pageshow", "#login", function(){ 
+	$(document).on("pageshow", "#page-login", function(){ 
 			navigator = ["login"];
 			//alert(navigator);
 	});	
 
-	$(document).on("pageshow", "#main", function(){ 
-			navigator = ["main"];
+	$(document).on("pageshow", "#page-logged-in-menu", function(){ 
+			navigator = ["page-logged-in-menu"];
 		    gutaus.creditnotes.published=false; // empty creditnotes list
 			gutaus.creditnotes.received=false; //  empty creditnotes list
 			$(".gutaus-btn-next").html("Weiter");
@@ -1301,10 +1300,10 @@ $(document).ready(function(){
 // SELECT MEMBERLISTS ******************************************************************************************************************************
 //*************************************************************************************************************************************************	
 
-		$(document).on("pagebeforeshow", "#memberlists-menu", function() { // chose a menbershiplist 
+		$(document).on("pagebeforeshow", "#page-memberlists-menu", function() { // chose a menbershiplist 
 			$(".navigation-line").html("Mitgliederlisten");
 			$(".massage-line-header").html("Bitte w&auml;hlen Sie aus!");
-			$(".gutaus-btn-back").attr("href", "#main");
+			$(".gutaus-btn-back").attr("href", "#page-logged-in-menu");
 			$(".gutaus-btn-next").hide();
 		});	
 	
@@ -1312,7 +1311,7 @@ $(document).ready(function(){
 // SELECT CREDITNOTE-MENU ******************************************************************************************************************************
 //*************************************************************************************************************************************************	
 
-		$(document).on("pagebeforeshow", "#creditnotes-menu", function() { // chose kind of creditnotes (published,received,Euro,Horos or publish one)
+		$(document).on("pagebeforeshow", "#page-creditnotes-menu", function() { // chose kind of creditnotes (published,received,Euro,Horos or publish one)
 			if (gutaus.creditnotes.chosen==false){
 				if (gutaus.creditnotes.are_received()) {
 					$("btn-creditnotes-received").show();
@@ -1328,8 +1327,9 @@ $(document).ready(function(){
 				}
 			}
 			$(".navigation-line").html("Meine Gutscheine");
-			$(".massage-line-header").html("Bitte w&auml;hlen Sie aus!");
-			$(".gutaus-btn-back").attr("href", "#main");
+			$(".info-line-header").hide();
+			$(".massage-line-header").html("Bitte wählen Sie eine Gutschein-Kategorie oder einen Gutschein aus!");
+			$(".gutaus-btn-back").attr("href", "#page-logged-in-menu");
 			$(".gutaus-btn-next").hide();
 		});
 
@@ -1354,9 +1354,10 @@ $(document).ready(function(){
 			
 //+++creditnote-list ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
 			
-				$(document).on("pagebeforeshow", "#creditnotes-list", function() {
+				$(document).on("pagebeforeshow", "#page-creditnotes-list", function() {
+					$(".info-line-header").hide();
 					$(".massage-line-header").html('Bitte w&auml;hlen Sie einen Gutschein aus!');
-					$(".gutaus-btn-back").attr("href", "#creditnotes-menu");
+					$(".gutaus-btn-back").attr("href", "#page-creditnotes-menu");
 					$(".gutaus-btn-next").hide();
 					if (gutaus.creditnotes.chosen=='received') {
 						$(".navigation-line").html("Erhaltene Gutscheine");
@@ -1366,7 +1367,7 @@ $(document).ready(function(){
 					}
 				});
 					
-					$(document).on("pageshow", "#creditnotes-list", function() {
+					$(document).on("pageshow", "#page-creditnotes-list", function() {
 						//gutaus.creditnotes.show();
 						$("#list-creditnotes:visible").listview("refresh");
 						update_navigator("creditnotes",1);
@@ -1388,25 +1389,26 @@ $(document).ready(function(){
 
 			
 //+++creditnote +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-					$(document).on("pagebeforeshow", "#creditnote", function(){
+					$(document).on("pagebeforeshow", "#page-creditnote-menu", function(){
 						//$(".btn-creditnote").hide();
 						$(".gutaus-btn-next").hide();			
 					});
 
-						$(document).on("pageshow", "#creditnote", function(){
-							update_navigator("creditnote",3);
+						$(document).on("pageshow", "#page-creditnote-menu", function(){
+							update_navigator("page-creditnote-menu",3);
 							//gutaus.creditnotes.show();
 							// HEADER
-							//$(".gutaus-btn-back").attr("href", "#creditnotes-menu");
+							//$(".gutaus-btn-back").attr("href", "#page-creditnotes-menu");
 							if (gutaus.creditnote_chosen.account_balance<0) {
 								$(".info-line-header").css({"background-color": "Crimson", "color": "white"});
 							}
 							else {
 								$(".info-line-header").css({"background-color": "lightgreen", "color": "black"});
 							}
-							$(".info-line-header").html('Kontostand: '+gutaus.creditnote_chosen.account_balance+' '+gutaus.creditnote_chosen.name);
-							$(".navigation-line").html('Gutschein-Infos und -Aktionen');
-							$(".massage-line-header").html('Bitte w&auml;hlen Sie f&uuml;r '+gutaus.creditnote_chosen.name+' etwas aus!');
+							$(".info-line-header").show().html('Kontostand: '+gutaus.creditnote_chosen.account_balance+' '+gutaus.creditnote_chosen.name);
+							$(".navigation-line").html(gutaus.creditnote_chosen.name+'-Infos und -Aktionen');
+
+							$(".massage-line-header").html('Hier können Sie mit '+gutaus.creditnote_chosen.name+' bezahlen oder sich über '+gutaus.creditnote_chosen.name+' informieren!');
 							//CONTENT
 							// FOOTER
 							
@@ -1414,25 +1416,25 @@ $(document).ready(function(){
 							$(".info-line-2-footer").html('Max. Akzeptanz  : '+gutaus.creditnote_chosen.acceptance_limit+' '+gutaus.creditnote_chosen.name);
 							
 							if (gutaus.creditnote_chosen.name=="Horus" || gutaus.creditnote_chosen.name=="Euro") {
-								$(".gutaus-btn-back").attr("href", "#creditnotes-menu"); //  creditnote was chosen directly from creditnotes-menu (Horus or Euro)
+								$(".gutaus-btn-back").attr("href", "#page-creditnotes-menu"); //  creditnote was chosen directly from page-creditnotes-menu (Horus or Euro)
 							}
 							else {
-								$(".gutaus-btn-back").attr("href", "#creditnotes-list"); // creditnote was chosen from creditnotes-list
+								$(".gutaus-btn-back").attr("href", "#page-creditnotes-list"); // creditnote was chosen from page-creditnotes-list
 							}
 							
 						});	
 
 						
-//creditnotes-publish ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ +++++++++++++++++++++++++++++++++++++++++++++++++++						
+//page-creditnote-publish-menu ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ +++++++++++++++++++++++++++++++++++++++++++++++++++						
 
 			$("#btn-creditnotes-publish").on("click", function(){
 				gutaus.creditnotes.chosen='publish';	
-				gutaus.creditnotes.get(); // object creditnotes.published is created out of Database and is filld in creditnotes list and page creditnotes-publish is shown
+				gutaus.creditnotes.get(); // object creditnotes.published is created out of Database and is filld in creditnotes list and page page-creditnote-publish-menu is shown
 			});
 		
-				$(document).on("pagebeforeshow", "#creditnotes-publish", function() {
+				$(document).on("pagebeforeshow", "#page-creditnote-publish-menu", function() {
 					$(".massage-line-header").html('Bitte w&auml;hlen Sie eine Gutscheinart aus!');
-					$(".gutaus-btn-back").attr("href", "#creditnotes-menu");
+					$(".gutaus-btn-back").attr("href", "#page-creditnotes-menu");
 					$(".gutaus-btn-next").hide();
 
 					
@@ -1475,9 +1477,9 @@ $(document).ready(function(){
 						gutaus.creditnote_chosen.publish_type="Service";
 					});								
 
-						$(document).on("pagebeforeshow", "#creditnote-publish", function() {
+						$(document).on("pagebeforeshow", "#page-creditnote-publish", function() {
 							$(".massage-line-header").html('Bitte f&uumlllen Sie die Felder aus!');
-							$(".gutaus-btn-back").attr("href", "#creditnotes-publish");
+							$(".gutaus-btn-back").attr("href", "#page-creditnote-publish-menu");
 							$(".gutaus-btn-next").show();
 							$(".gutaus-btn-next").html("jetzt herausgeben");
 						});						
@@ -1492,11 +1494,11 @@ $(document).ready(function(){
 		if (gutaus.creditnote_chosen.publisher_id==gutaus.user_data.id) {
 			$("#btn-creditnotes-pay_to_publisher").hide();
 		}
-		$.mobile.changePage("#pay");
+		$.mobile.changePage("#page-pay-to-menu");
 	});	
 	
 
-		$(document).on("pagebeforeshow", "#pay", function(){ 
+		$(document).on("pagebeforeshow", "#page-pay-to-menu", function(){ 
 			// HEADER
 			$(".navigation-line").html('bezahle ');
 			$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an ...');
@@ -1504,7 +1506,7 @@ $(document).ready(function(){
 			//CONTENT
 			
 			// FOOTER
-			$(".gutaus-btn-back").attr("href", "#creditnote");
+			$(".gutaus-btn-back").attr("href", "#page-creditnote-menu");
 		});	
 // Publischer +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++			
 			$("#btn-creditnotes-pay_to_publisher").on("click", function(){
@@ -1527,22 +1529,22 @@ $(document).ready(function(){
 					gutaus.members.get();
 				}
 				else {
-					$("#list-members").empty(); // clear members-list
-					$.mobile.changePage("#members-list");
+					$("#list-members-pay-to").empty(); // clear members-list
+					$.mobile.changePage("#page-members-list");
 				}
 				
 			});	
 			/*
-				$(document).on("pagebeforeshow", "#memberlists-menu", function(){ 
+				$(document).on("pagebeforeshow", "#page-memberlists-menu", function(){ 
 					$(".navigation-line").html('bezahle');
 					$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an ein Mitglied aus Liste ...');
-					$(".gutaus-btn-back").attr("href", "#pay");
+					$(".gutaus-btn-back").attr("href", "#page-pay-to-menu");
 				});	
 			*/	
 
 // Memberlists ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++					
 		
-					$(document).on("pagebeforeshow", "#members-list", function(){ 
+					$(document).on("pagebeforeshow", "#page-members-list", function(){ 
 						if(gutaus.members.chosen=='known'){
 							$(".navigation-line").html('bezahle an bekanntes Mitglied');
 						}
@@ -1559,13 +1561,13 @@ $(document).ready(function(){
 						gutaus.members.chosen='email';
 						gutaus.creditnote_chosen.pay_type_of_transfer='email';
 						$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an Email: '+$("#input-email-receiver").val());
-						$.mobile.changePage("#pay-email");
+						$.mobile.changePage("#page-pay-email");
 					});	
 
-						$(document).on("pagebeforeshow", "#pay-email", function(){
+						$(document).on("pagebeforeshow", "#page-pay-email", function(){
 							$(".navigation-line").html('bezahle an Email');
-							$(".gutaus-btn-back").attr("href", "#pay");
-							//$(".gutaus-btn-next").attr("href", "#pay-amount");
+							$(".gutaus-btn-back").attr("href", "#page-pay-to-menu");
+							//$(".gutaus-btn-next").attr("href", "#page-pay-amount");
 							//$(".gutaus-btn-next").attr("id","btn-email-receiver");
 							//$(".gutaus-btn-next").button('refresh');
 							$(".gutaus-btn-next").show();
@@ -1587,18 +1589,18 @@ $(document).ready(function(){
 					$("#btn-creditnotes-pay_to_mobile").on("click", function(){
 						gutaus.members.chosen='mobile';
 						gutaus.creditnote_chosen.pay_type_of_transfer='mobilenumber';
-						$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an Hadynummer: '+$("#input-mobile-receiver").val());
-						$.mobile.changePage("#pay-mobile");
+						$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an Hadynummer: '+$("#input-pay-mobile").val());
+						$.mobile.changePage("#page-pay-mobile");
 					});	
 							
-						$(document).on("pagebeforeshow", "#pay-mobile", function(){ 
+						$(document).on("pagebeforeshow", "#page-pay-mobile", function(){ 
 							$(".navigation-line").html('bezahle an Handynummer');
-							$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an Handynummer:'+$("#input-mobile-receiver").val());
-							$(".gutaus-btn-back").attr("href", "#pay");
+							$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an Handynummer:'+$("#input-pay-mobile").val());
+							$(".gutaus-btn-back").attr("href", "#page-pay-to-menu");
 							$(".gutaus-btn-next").show();
 						});						
 						
-							$("#input-mobile-receiver").keyup(function(e){
+							$("#input-pay-mobile").keyup(function(e){
 							
 							
 								if ((e.which==13)) { // Enter Key
@@ -1608,15 +1610,15 @@ $(document).ready(function(){
 								}		
 								
 								if ((e.which>=48 & e.which<=57) || (e.which>=37 & e.which<=40) || e.which==8) { // is Number or back or next or backspace
-									$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an Hadynummer: '+$("#input-mobile-receiver").val());
+									$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an Hadynummer: '+$("#input-pay-mobile").val());
 								}
 								else { // is no Number
-									if (!(e.which==187 & $("#input-mobile-receiver").val().length==1)) { // first sign not + ==> delete sign
-										$("#input-mobile-receiver").val($("#input-mobile-receiver").val().substr(0, $("#input-mobile-receiver").val().length-1));
+									if (!(e.which==187 & $("#input-pay-mobile").val().length==1)) { // first sign not + ==> delete sign
+										$("#input-pay-mobile").val($("#input-pay-mobile").val().substr(0, $("#input-pay-mobile").val().length-1));
 									}
 									else {
-										$("#input-mobile-receiver").val("00");
-										$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an Hadynummer: '+$("#input-mobile-receiver").val());
+										$("#input-pay-mobile").val("00");
+										$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an Hadynummer: '+$("#input-pay-mobile").val());
 										alert ("+ wurde durch 00 ersetzt, da nuz Zahlen als Eingabe erlaubt sind!");
 									}
 								}
@@ -1626,24 +1628,24 @@ $(document).ready(function(){
 //*************************************************************************************************************************************************
 // SET PAY-AMOUNT AND PURPOSE *********************************************************************************************************************
 //*************************************************************************************************************************************************
-		$(document).on("pagebeforeshow", "#pay-amount", function(){ 
+		$(document).on("pagebeforeshow", "#page-pay-amount", function(){ 
 			$(".navigation-line").html('Betrag');
 			$(".gutaus-btn-next").html("Weiter");
 			$(".gutaus-btn-next").show();
 				if (gutaus.members.chosen=="email") {
-					$(".gutaus-btn-back").attr("href", "#pay-email");
+					$(".gutaus-btn-back").attr("href", "#page-pay-email");
 				}
 				else if (gutaus.members.chosen=="mobile") {
-					$(".gutaus-btn-back").attr("href", "#pay-mobile");
+					$(".gutaus-btn-back").attr("href", "#page-pay-mobile");
 				}
 				else if (gutaus.members.chosen=="known") {
-					$(".gutaus-btn-back").attr("href", "#members-list");
+					$(".gutaus-btn-back").attr("href", "#page-members-list");
 				}
 				else if (gutaus.members.chosen=="searched") {
-					$(".gutaus-btn-back").attr("href", "#members-list");
+					$(".gutaus-btn-back").attr("href", "#page-members-list");
 				}
 				else {
-					$(".gutaus-btn-back").attr("href", "#pay");
+					$(".gutaus-btn-back").attr("href", "#page-pay-to-menu");
 				}
 				$(".massage-line-header").html('bezahle '
 												+Math.abs($("#input-pay-amount").val())
@@ -1678,9 +1680,9 @@ $(document).ready(function(){
 		//			gutaus.user_data.validate_user_input();
 		//	});	
 			
-		$(document).on("pagebeforeshow", "#pay-purpose", function(){ 
+		$(document).on("pagebeforeshow", "#page-pay-purpose", function(){ 
 			$(".navigation-line").html('Verwendungszweck');
-			$(".gutaus-btn-back").attr("href", "#pay-amount");
+			$(".gutaus-btn-back").attr("href", "#page-pay-amount");
 			$(".gutaus-btn-next").html("jetzt bezahlen");
 			$(".gutaus-btn-next").show();
 			$(".massage-line-header").html('bezahle '
@@ -1729,33 +1731,33 @@ $(document).ready(function(){
 // SELECT MEMBER **********************************************************************************************************************************
 //*************************************************************************************************************************************************	
 				
-					$(document).on("pageshow", "#members-list", function() {
-						//$("#list-members:visible").listview("refresh");
-						$(".members-filter").blur();
+					$(document).on("pageshow", "#page-members-list", function() {
+						//$("#list-members-pay-to:visible").listview("refresh");
+						$("#members-filter-pay-to").blur();
 						if(gutaus.members.chosen=='searched') {
 							$(".gutaus-btn-next").html("suchen");
 							$(".gutaus-btn-next").show();
 						}
 						else {
-							$(".members-filter").val("");
+							$("#members-filter-pay-to").val("");
 							$(".gutaus-btn-next").hide();
 						}
-						$(".gutaus-btn-back").attr("href","#pay");
-						$("#list-members:visible").listview("refresh");
+						$(".gutaus-btn-back").attr("href","#page-pay-to-menu");
+						$("#list-members-pay-to:visible").listview("refresh");
 					});			
 
 
-						$(".members-filter").keyup(function(e){
-							if (e.which==13 || $(".members-filter").val().length>2){ // Enter Key or input larger than two characters
+						$("#members-filter-pay-to").keyup(function(e){
+							if (e.which==13 || $("#members-filter-pay-to").val().length>2){ // Enter Key or input larger than two characters
 								if (gutaus.members.chosen=='searched') { // what kind of Member are you
 									gutaus.members.get(); // 
 
 									if (gutaus.members.searched==0) { // if no members were found in database
-										alert("Es gibt keien Mitglieder die mit den Buchstaben "+$(".members-filter").val()+" beginnen! Bitte suchen Sie mit ander Anfangsbuchstaben.");
+										alert("Es gibt keien Mitglieder die mit den Buchstaben "+$("#members-filter-pay-to").val()+" beginnen! Bitte suchen Sie mit ander Anfangsbuchstaben.");
 										return false; // no members were found in database
 									};
 
-									//$(".members-filter").blur();
+									//$("#members-filter-pay-to").blur();
 								}
 								//$(".gutaus-btn-next").trigger( "focus" );
 								gutaus.user_data.validate_user_input();
@@ -1764,7 +1766,7 @@ $(document).ready(function(){
 							else if (e.which==32) { // Space Key
 									return false;
 							}
-							$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an '+$(".members-filter").val());	
+							$(".massage-line-header").html('bezahle '+gutaus.creditnote_chosen.name+' an '+$("#members-filter-pay-to").val());	
 						});				
 
 //**************************************************************************************************************************************************
@@ -1775,11 +1777,11 @@ $(document).ready(function(){
 		});
 
 
-			$(document).on("pagebeforeshow", "#transactions-table", function(){ 
+			$(document).on("pagebeforeshow", "#page-transactions-table", function(){ 
 				// HEADER
-				$(".navigation-line").html("Kontoums&auml;tze");
+				$(".navigation-line").html("Kontoums&auml;tze meiner "+gutaus.creditnote_chosen.name);
 				$(".massage-line-header").html('Sie k&ouml;nnen Spalten ein und ausblenden!');
-				$(".gutaus-btn-back").attr("href", "#creditnote");
+				$(".gutaus-btn-back").attr("href", "#page-creditnote-menu");
 				$(".gutaus-btn-next").hide();
 			});	
 
