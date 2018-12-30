@@ -28,6 +28,7 @@
 			
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
+<script src="js/gutaus-class-and-object.js"></script>
 <script src="js/user-event-mobile.js"></script>
 <link rel="stylesheet" href="./css/style-mobil.css">
 
@@ -326,7 +327,7 @@
 				<a href="#" id="btn-acceptance_limit"	class="ui-btn ui-icon-carat-r ui-btn-icon-right ">Max. Akzeptanz</a>
 				<a href="#" id="btn-exchange-points"	class="ui-btn ui-icon-carat-r ui-btn-icon-right ">Umtauschstellen</a>
 				<a href="#" id="btn-creditors"			class="ui-btn ui-icon-carat-r ui-btn-icon-right ">Schuldner</a>
-				<a href="#" id="btn-debtors"			class="ui-btn ui-icon-carat-r ui-btn-icon-right ">Gläubiger</a>
+				<a href="#page-members-list-debtors" id="btn-debtors"			class="ui-btn ui-icon-carat-r ui-btn-icon-right ">Gläubiger</a>
 				<a href="#" id="btn-publisher"			class="ui-btn ui-icon-carat-r ui-btn-icon-right ">Herausgeber</a>
 				<a href="#" id="btn-loading"			class="ui-btn ui-icon-carat-r ui-btn-icon-right ">aufladen</a>
 				<a href="#" id="btn-pay-out"			class="ui-btn ui-icon-carat-r ui-btn-icon-right ">auszahlen</a>	
@@ -620,7 +621,7 @@
 				<a href="#" id="btn-acceptance_limit"	class="ui-btn ui-icon-carat-r ui-btn-icon-right btn-member">Max. Akzeptanz</a>
 				<a href="#" id="btn-exchange-points"	class="ui-btn ui-icon-carat-r ui-btn-icon-right btn-member">Umtauschstellen</a>
 				<a href="#" id="btn-creditors"			class="ui-btn ui-icon-carat-r ui-btn-icon-right btn-member">Schuldner</a>
-				<a href="#" id="btn-debtors"			class="ui-btn ui-icon-carat-r ui-btn-icon-right btn-member">Gläubiger</a>
+				<a href="#page-members-list-debtors" id="btn-debtors"			class="ui-btn ui-icon-carat-r ui-btn-icon-right btn-member">Gläubiger</a>
 				<a href="#" id="btn-publisher"			class="ui-btn ui-icon-carat-r ui-btn-icon-right btn-member">Herausgeber</a>
 				<a href="#" id="btn-loading"			class="ui-btn ui-icon-carat-r ui-btn-icon-right btn-member">aufladen</a>
 				<a href="#" id="btn-pay-out"			class="ui-btn ui-icon-carat-r ui-btn-icon-right btn-member">auszahlen</a>	
@@ -645,7 +646,7 @@
 			<a href="#" id="btn-suppliers" 			class="ui-btn ui-icon-grid ui-btn-icon-right">Lieferanten</a>
 			<a href="#" id="btn-customers"			class="ui-btn ui-icon-grid ui-btn-icon-right">Kunden</a>
 -->
-			<a href="#" id="btn-debtors"			class="ui-btn ui-icon-grid ui-btn-icon-right">
+			<a href="#page-members-list-debtors" id="btn-debtors"			class="ui-btn ui-icon-grid ui-btn-icon-right">
 				Schuldner-Liste<br>
 				<span style="font-size:77%;">Mitglieder deren Gutscheine ich haben</span>
 			</a>
@@ -674,6 +675,26 @@
 <!--
 ********************************************************************************************************
 -->
+		<div data-role="page" id="page-members-list-debtors">
+			<?php include('header.html');?>
+
+		  <div data-role="main" class="ui-content">
+			<form class="ui-filterable">
+				<input id="members-filter-debtors-pay-to" data-type="search" placeholder="Bitte Mitgliedsname eingenben">
+			</form>
+			<ul data-role="listview" id="list-members-pay-to" data-filter="true" data-input="#members-filter-debtors-pay-to" data-autodividers="true" data-inset="true">
+				<!-- is filled from DB//-->
+			</ul>
+		  </div>
+
+		  <?php include('footer.html');?>
+		</div> 	
+
+<!--
+********************************************************************************************************
+-->
+
+
 		<div data-role="page" id="memberlist">
 		  <div data-role="header" data-theme="b" data-position="fixed">
 			<div data-role="navbar">
