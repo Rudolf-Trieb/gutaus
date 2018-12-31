@@ -2,7 +2,7 @@
    //SESSION
     session_start();
 	include_once('include_0_db_conection.php');
-	include_once('../../funktionen.php');
+	include_once('funktionen.php');
 	
 	if ($_SESSION["login"]==1) { // is logtin
 	

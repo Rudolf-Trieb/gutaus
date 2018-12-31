@@ -35,7 +35,7 @@
 		$_SESSION['Tester_Flag']=$row['Tester_Flag'];
 		
 		// creats user-data object fot send back to client
-		$user_data="{"; 
+		$user_data='{'; 
 			$user_data.='"login":';
 			$user_data.='1';		// login is true
 			$user_data.=',';
@@ -53,27 +53,11 @@
 		doLogin($_SESSION["user_id"]); 
 	}
 	else {
-	  $_SESSION["login"]=false; // login is set to false. false equalises the number 0
-	  
-	  
-	  // but Lets say everything is in order because it is a test system
-	  //$_SESSION["login"]=true; 
-	  	// creats user-data object fot send back to client
-	  	$user_data="{"; 
-			$user_data.='"login":';
-			$user_data.='1';		// login is true
-			$user_data.=',';
-			$user_data.='"user_id":';
-			$user_data.='"0"';
-			$user_data.=',';
-			$user_data.='"user_name":';
-			$user_data.='"Gastuser"';
-			$user_data.=',';
-			$user_data.='"user_avatar":';
-			$user_data.='"logo 1.0.jpg"';
-		$user_data.="}";
-		
-		
+                $_SESSION["login"]=false; // login is set to false. false equalises the number 0
+                $user_data='{'; 
+                $user_data.='"login":';
+                $user_data.='0';		// login is false=0
+                $user_data.='}';	
 	}
 
 	echo $user_data; // sends to client in JSON Format

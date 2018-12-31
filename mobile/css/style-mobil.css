@@ -1,5 +1,5 @@
 .ui-icon-back {
-float:right;
+	float:right;
 }
 
 .navigation-line{
@@ -7,9 +7,9 @@ float:right;
 }
 
 .info-line-header{
-		background-color: Crimson; 
-		color:  black;
-		text-align: center; 
+	background-color: Crimson; 
+	color:  black;
+	text-align: center; 
 }
 .massage-line-header{
 	background-color: lightyellow;
@@ -46,6 +46,5 @@ tr:nth-child(even) {
 
 .positive-number {
 	background-color:lightgreen; 
-	//color:white;
 	text-align: right; 
 }

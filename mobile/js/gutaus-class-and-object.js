@@ -141,7 +141,7 @@
 							success: function (str_user_data) {
 									var user_data = JSON.parse(str_user_data);
 									
-									if (user_data.id>0) {
+									if (user_data.login) {
 										gutaus.user_data.name=user_data.name;
 										gutaus.user_data.id=user_data.id;
 										gutaus.user_data.avatar=user_data.avatar;
@@ -976,222 +976,222 @@
 
 		}
 		
-			function MEMBER_CHOSEN () {
-			//PROPERTIES
-				
-				this.member;   // all data of chosen-member
-				
-			//METHODS
+		function MEMBER_CHOSEN () {
+		//PROPERTIES
 			
-				// Validation methods
-				this.validateEmail=function(sEmail) {
-					var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-					if (filter.test(sEmail)) {
-						return true;
-					}
-					else {
-						return false;
-					}
-				}		
-				
-				this.validateMobile=function(sMobile) {
-					var filter =  /\d+/;
-					if (filter.test(sMobile) && sMobile.length<16) {
-						return true;
-					}
-					else {
-						return false;
-					}
-				}	
-				
-				// get methods  
-				this.get_member_info_belonging_to_id= function(id) {
-					var url;
-					url="./model/member-info-of-id.php";				
-					$.ajax({
-						type: "post",
-						url: url,
-						data: {member_chosen_id : id},              
-						async: true,
-						beforeSend: function() {
-							// This callback function will trigger before data is sent
-							//$.mobile.showPageLoadingMsg(true); // This will show ajax spinner
-							$.mobile.loading("show"); // This will hide ajax spinner
-						},
-						complete: function() {
-							// This callback function will trigger on data sent/received complete
-							//$.mobile.hidePageLoadingMsg(); // This will hide ajax spinner
-							$.mobile.loading("hide"); // This will hide ajax spinner
-						},
-						success: function (str_member_out_of_DB) {					
-							var member_out_of_DB = JSON.parse(str_member_out_of_DB);
-							if (typeof member_out_of_DB.login === 'undefined') {
-								gutaus.member_chosen.member=member_out_of_DB;
-								//gutaus.member_chosen.id=id;
-								gutaus.member_chosen.show();
-								$(".gutaus-btn-back").attr("href", "#pay");
-								$.mobile.changePage("#page-pay-amount");
-
-							}
-							else {
-								alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-								$.mobile.changePage("#page-logged-out-menu");
-							}
-						},
-						error: function (request,error) {
-							// This callback function will trigger on unsuccessful action                
-							alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang?');
-						}
-					}); 				
+			this.member;   // all data of chosen-member
 			
+		//METHODS
+		
+			// Validation methods
+			this.validateEmail=function(sEmail) {
+				var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+				if (filter.test(sEmail)) {
+					return true;
 				}
-				
-				this.get_member_info_belonging_to_email= function(email) {
-					var url;
-					url="./model/member-info-of-email.php";				
-					$.ajax({
-						type: "post",
-						url: url,
-						data: {member_email : email},              
-						async: true,
-						beforeSend: function() {
-							// This callback function will trigger before data is sent
-							//$.mobile.showPageLoadingMsg(true); // This will show ajax spinner
-							$.mobile.loading("show"); // This will hide ajax spinner
-						},
-						complete: function() {
-							// This callback function will trigger on data sent/received complete
-							//$.mobile.hidePageLoadingMsg(); // This will hide ajax spinner
-							$.mobile.loading("hide"); // This will hide ajax spinner
-						},
-						success: function (str_member_out_of_DB) {					
-							var member_out_of_DB = JSON.parse(str_member_out_of_DB);
-							if (typeof member_out_of_DB.login === 'undefined') {
-								gutaus.member_chosen.member=member_out_of_DB;
-								if (gutaus.member_chosen.member.name!="") { //member of email was found in DB
-									if(gutaus.member_chosen.member.id!=gutaus.user_data.id) {
-										alert('Das Mitglied '
-												+gutaus.member_chosen.member.name
-												+' ist bereits bei GuTauSder E-Mail-Adresse '
-												+email
-												+' registiert. Ihre Bezahlung erfogt also an '
-												+gutaus.member_chosen.member.name
-												+' !!!'  );
-										gutaus.member_chosen.show();
-										$.mobile.changePage("#page-pay-amount");
-									}
-									else { 
-										alert('Die E-Mail-Adresse: '
-												+email
-												+' ist Ihre eigene E-Mail-Adresse! Es ist nicht erlaubt und nicht sinnvoll an sich selbst zu bezahlen!');
-										return;
-									}
-								}
-								else { //member of email wasn't found in DB
-									alert(unescape('Es ist noch kein Mitglieder E-Mail-Adresse '
-									+email
-									+' bei GuTauS registriert, wenn Sie an diese E-Mail-Adresse bezahlen, wird ein '
-									+gutaus.creditnotes.creditnote_chosen.name
-									+'-Konto bei GuTaus f%FCr diese E-Mail-Adresse er%F6ffnet und eine Info E-Mail an '
-									+email
-									+' gesendet!'));
-									gutaus.member_chosen.show();
-									$.mobile.changePage("#page-pay-amount");
-								}
-
-
-							}
-							else {
-								alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-								$.mobile.changePage("#page-logged-out-menu");
-							}
-						},
-						error: function (request,error) {
-							// This callback function will trigger on unsuccessful action                
-							alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang?');
-						}
-					}); 				
-			
+				else {
+					return false;
 				}
-							
-				this.get_member_info_belonging_to_mobile= function(mobile) {
-					var url;
-					url="./model/member-info-of-mobile.php";				
-					$.ajax({
-						type: "post",
-						url: url,
-						data: {member_mobile : mobile},              
-						async: true,
-						beforeSend: function() {
-							// This callback function will trigger before data is sent
-							//$.mobile.showPageLoadingMsg(true); // This will show ajax spinner
-							$.mobile.loading("show"); // This will hide ajax spinner
-						},
-						complete: function() {
-							// This callback function will trigger on data sent/received complete
-							//$.mobile.hidePageLoadingMsg(); // This will hide ajax spinner
-							$.mobile.loading("hide"); // This will hide ajax spinner
-						},
-						success: function (str_member_out_of_DB) {					
-							var member_out_of_DB = JSON.parse(str_member_out_of_DB);
-							if (typeof member_out_of_DB.login === 'undefined') {
-								gutaus.member_chosen.member=member_out_of_DB;
-								if (gutaus.member_chosen.member.name!="") { //member of email was found in DB
-									if(gutaus.member_chosen.member.id!=gutaus.user_data.id) {
-										alert('Das Mitglied '
+			}		
+			
+			this.validateMobile=function(sMobile) {
+				var filter =  /\d+/;
+				if (filter.test(sMobile) && sMobile.length<16) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}	
+			
+			// get methods  
+			this.get_member_info_belonging_to_id= function(id) {
+				var url;
+				url="./model/member-info-of-id.php";				
+				$.ajax({
+					type: "post",
+					url: url,
+					data: {member_chosen_id : id},              
+					async: true,
+					beforeSend: function() {
+						// This callback function will trigger before data is sent
+						//$.mobile.showPageLoadingMsg(true); // This will show ajax spinner
+						$.mobile.loading("show"); // This will hide ajax spinner
+					},
+					complete: function() {
+						// This callback function will trigger on data sent/received complete
+						//$.mobile.hidePageLoadingMsg(); // This will hide ajax spinner
+						$.mobile.loading("hide"); // This will hide ajax spinner
+					},
+					success: function (str_member_out_of_DB) {					
+						var member_out_of_DB = JSON.parse(str_member_out_of_DB);
+						if (typeof member_out_of_DB.login === 'undefined') {
+							gutaus.member_chosen.member=member_out_of_DB;
+							//gutaus.member_chosen.id=id;
+							gutaus.member_chosen.show();
+							$(".gutaus-btn-back").attr("href", "#pay");
+							$.mobile.changePage("#page-pay-amount");
+
+						}
+						else {
+							alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
+							$.mobile.changePage("#page-logged-out-menu");
+						}
+					},
+					error: function (request,error) {
+						// This callback function will trigger on unsuccessful action                
+						alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang?');
+					}
+				}); 				
+		
+			}
+			
+			this.get_member_info_belonging_to_email= function(email) {
+				var url;
+				url="./model/member-info-of-email.php";				
+				$.ajax({
+					type: "post",
+					url: url,
+					data: {member_email : email},              
+					async: true,
+					beforeSend: function() {
+						// This callback function will trigger before data is sent
+						//$.mobile.showPageLoadingMsg(true); // This will show ajax spinner
+						$.mobile.loading("show"); // This will hide ajax spinner
+					},
+					complete: function() {
+						// This callback function will trigger on data sent/received complete
+						//$.mobile.hidePageLoadingMsg(); // This will hide ajax spinner
+						$.mobile.loading("hide"); // This will hide ajax spinner
+					},
+					success: function (str_member_out_of_DB) {					
+						var member_out_of_DB = JSON.parse(str_member_out_of_DB);
+						if (typeof member_out_of_DB.login === 'undefined') {
+							gutaus.member_chosen.member=member_out_of_DB;
+							if (gutaus.member_chosen.member.name!="") { //member of email was found in DB
+								if(gutaus.member_chosen.member.id!=gutaus.user_data.id) {
+									alert('Das Mitglied '
 											+gutaus.member_chosen.member.name
-											+' ist bereits bei GuTauSder Hadynummer '
-											+mobile
+											+' ist bereits bei GuTauSder E-Mail-Adresse '
+											+email
 											+' registiert. Ihre Bezahlung erfogt also an '
 											+gutaus.member_chosen.member.name
 											+' !!!'  );
-										gutaus.member_chosen.show();
-										$.mobile.changePage("#page-pay-amount");
-									}
-									else { 
-										alert('Die Hadynummer: '
-											+mobile
-											+' ist Ihre eigene Hadynummer! Es ist nicht erlaubt und nicht sinnvoll an sich selbst zu bezahlen!');		
-									}	
+									gutaus.member_chosen.show();
+									$.mobile.changePage("#page-pay-amount");
 								}
-								else { //member of email wasn't found in DB
-									alert(unescape('Es ist noch kein Mitglieder Handynummer: '
-										+mobile
-										+' bei GuTauS registriert, wenn Sie an diese Hadynummer bezahlen, wird ein '
-										+gutaus.creditnotes.creditnote_chosen.name
-										+'-Konto bei GuTaus f%FCr diese Hadynummer er%F6ffnet und eine Info SMS an die Hadynummer:'
-										+mobile
-										+' gesendet!'));
-										gutaus.member_chosen.show();
-										$.mobile.changePage("#page-pay-amount");
+								else { 
+									alert('Die E-Mail-Adresse: '
+											+email
+											+' ist Ihre eigene E-Mail-Adresse! Es ist nicht erlaubt und nicht sinnvoll an sich selbst zu bezahlen!');
+									return;
 								}
 							}
-							else {
-								alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
-								$.mobile.changePage("#page-logged-out-menu");
+							else { //member of email wasn't found in DB
+								alert(unescape('Es ist noch kein Mitglieder E-Mail-Adresse '
+								+email
+								+' bei GuTauS registriert, wenn Sie an diese E-Mail-Adresse bezahlen, wird ein '
+								+gutaus.creditnotes.creditnote_chosen.name
+								+'-Konto bei GuTaus f%FCr diese E-Mail-Adresse er%F6ffnet und eine Info E-Mail an '
+								+email
+								+' gesendet!'));
+								gutaus.member_chosen.show();
+								$.mobile.changePage("#page-pay-amount");
 							}
-						},
-						error: function (request,error) {
-							// This callback function will trigger on unsuccessful action                
-							alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang?');
-						}
-					}); 				
-		
-				}
-				
-				// schow methods
-				this.show= function() {
-					
-					if (gutaus.members.chosen=='member' || gutaus.members.chosen=='publisher' ) {
-						$(".receiver-chosen").html(this.member.name);
-					}
-					else {
-						$(".receiver-chosen").html(this.member.email);
-						$(".receiver-chosen").html(this.member.mobile);
-					}					
-				}
 
+
+						}
+						else {
+							alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
+							$.mobile.changePage("#page-logged-out-menu");
+						}
+					},
+					error: function (request,error) {
+						// This callback function will trigger on unsuccessful action                
+						alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang?');
+					}
+				}); 				
+		
 			}
+						
+			this.get_member_info_belonging_to_mobile= function(mobile) {
+				var url;
+				url="./model/member-info-of-mobile.php";				
+				$.ajax({
+					type: "post",
+					url: url,
+					data: {member_mobile : mobile},              
+					async: true,
+					beforeSend: function() {
+						// This callback function will trigger before data is sent
+						//$.mobile.showPageLoadingMsg(true); // This will show ajax spinner
+						$.mobile.loading("show"); // This will hide ajax spinner
+					},
+					complete: function() {
+						// This callback function will trigger on data sent/received complete
+						//$.mobile.hidePageLoadingMsg(); // This will hide ajax spinner
+						$.mobile.loading("hide"); // This will hide ajax spinner
+					},
+					success: function (str_member_out_of_DB) {					
+						var member_out_of_DB = JSON.parse(str_member_out_of_DB);
+						if (typeof member_out_of_DB.login === 'undefined') {
+							gutaus.member_chosen.member=member_out_of_DB;
+							if (gutaus.member_chosen.member.name!="") { //member of email was found in DB
+								if(gutaus.member_chosen.member.id!=gutaus.user_data.id) {
+									alert('Das Mitglied '
+										+gutaus.member_chosen.member.name
+										+' ist bereits bei GuTauSder Hadynummer '
+										+mobile
+										+' registiert. Ihre Bezahlung erfogt also an '
+										+gutaus.member_chosen.member.name
+										+' !!!'  );
+									gutaus.member_chosen.show();
+									$.mobile.changePage("#page-pay-amount");
+								}
+								else { 
+									alert('Die Hadynummer: '
+										+mobile
+										+' ist Ihre eigene Hadynummer! Es ist nicht erlaubt und nicht sinnvoll an sich selbst zu bezahlen!');		
+								}	
+							}
+							else { //member of email wasn't found in DB
+								alert(unescape('Es ist noch kein Mitglieder Handynummer: '
+									+mobile
+									+' bei GuTauS registriert, wenn Sie an diese Hadynummer bezahlen, wird ein '
+									+gutaus.creditnotes.creditnote_chosen.name
+									+'-Konto bei GuTaus f%FCr diese Hadynummer er%F6ffnet und eine Info SMS an die Hadynummer:'
+									+mobile
+									+' gesendet!'));
+									gutaus.member_chosen.show();
+									$.mobile.changePage("#page-pay-amount");
+							}
+						}
+						else {
+							alert('Sie sind nicht eingeloggt! Bitte loggen Sie sich ein!');
+							$.mobile.changePage("#page-logged-out-menu");
+						}
+					},
+					error: function (request,error) {
+						// This callback function will trigger on unsuccessful action                
+						alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang?');
+					}
+				}); 				
+	
+			}
+			
+			// schow methods
+			this.show= function() {
+				
+				if (gutaus.members.chosen=='member' || gutaus.members.chosen=='publisher' ) {
+					$(".receiver-chosen").html(this.member.name);
+				}
+				else {
+					$(".receiver-chosen").html(this.member.email);
+					$(".receiver-chosen").html(this.member.mobile);
+				}					
+			}
+
+		}
 						
 	
 //*************************************************************************************************************************************************
@@ -1213,5 +1213,4 @@
 	function validateEmail(email) {
     	var re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     	return re.test(email);
-	}	
-
+	}
