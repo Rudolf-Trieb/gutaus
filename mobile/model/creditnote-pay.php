@@ -1,8 +1,8 @@
 <?php
    //SESSION
     session_start();
-	include_once('include_0_db_conection.php');
-	include_once('funktionen.php');
+	include_once('../includes/include_0_db_conection.php');
+	include_once('../includes/funktionen.php');
 	
 	if ($_SESSION["login"]==1) { // is logtin
 	
@@ -36,7 +36,7 @@
 //***************************************************************************************************************************************************************
 // PRÜFE ÜBERWEISUNG MÖGLICH************************************************************************************************************************************
 //***************************************************************************************************************************************************************		
-		include_once('creditnote-pay-check.php');
+		include_once('../includes/creditnote-pay-check.php');
 
 //echo "after check:  ";			
 //echo "user_id=".$_SESSION['user_id']."/n";	

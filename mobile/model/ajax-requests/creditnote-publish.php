@@ -1,8 +1,8 @@
 <?php
    //SESSION
     session_start();
-	include_once('include_0_db_conection.php');
-	include_once('funktionen.php');
+	include_once('../includes/include_0_db_conection.php');
+	include_once('../includes/funktionen.php');
 	
 	if ($_SESSION["login"]==1) { // is logtin
 	
@@ -20,7 +20,7 @@
 //***************************************************************************************************************************************************************
 // PRÜFE HERAUSGABE MÖGLICH************************************************************************************************************************************
 //***************************************************************************************************************************************************************		
-		include_once('creditnote-publish-check.php');
+		include_once('../includes/creditnote-publish-check.php');
 
 //echo "after check:  ";			
 //echo "user=".$_SESSION['creditnote_publish_credit_limit_user']."/n";	

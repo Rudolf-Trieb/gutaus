@@ -1,7 +1,7 @@
 <?php
    //SESSION
     session_start();
-	include_once('include_0_db_conection.php');
+	include_once('../includes/include_0_db_conection.php');
 		
 	if ($_SESSION["login"]) { // if login true
 	
@@ -77,15 +77,4 @@
 		$send_back='{"login":false}';
 	}
 	echo $send_back;
-	
-
-	
-
-	
-	
-	
-// Funktionen++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// ENDE Funktionen++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 ?>

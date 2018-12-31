@@ -1,7 +1,7 @@
 <?php
    //SESSION
     session_start();
-	include_once('include_0_db_conection.php');
+	include_once('../includes/include_0_db_conection.php');
 	
 	if ($_SESSION["login"]==1) {
 		$members_searched = $_REQUEST['members_searched']; // Get send search string

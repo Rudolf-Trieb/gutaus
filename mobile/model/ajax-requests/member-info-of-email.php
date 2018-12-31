@@ -1,11 +1,11 @@
 <?php
    //SESSION
     session_start();
-	include_once('include_0_db_conection.php');
+	include_once('../includes/include_0_db_conection.php');
 		
 	if ($_SESSION["login"]) { // if login true
 	
-		$_SESSION['member_chosen_id']=$_REQUEST['member_chosen_id']; // Get sended member_chosen_id
+		$_SESSION['member_email']=$_REQUEST['member_email']; // Get sended member_chosen_id
 		
 		
 		$sql="    SELECT 
@@ -17,7 +17,7 @@
 						`Telefonnummer` AS telephone_number, 
 						`Show_Telefonnummer` AS telephone_number_show, 
 						`Mobilnummer` AS mobile , 
-						`Show_Mobilnummer` AS mobile, 
+						`Show_Mobilnummer` AS mobile_show, 
 						`Homepage` AS homepage, 
 						`Registrierungsdatum` AS registration_date, 
 						`PLZ` AS postal_code, 
@@ -33,7 +33,7 @@
 						
 					FROM `mitglieder`
 					
-					WHERE `ID`=".mysql_real_escape_string(trim($_SESSION['member_chosen_id']));
+					WHERE `email`='".mysql_real_escape_string(trim($_SESSION['member_email']))."'";
 
 				  
 		//echo "sql=".$sql;
@@ -63,7 +63,7 @@
 			$send_back.=',';
 			
 			$send_back.='"mobile":';
-			($row['telephone_mobile_show'] ? $send_back.='"'.$row['mobile'].'"' : $send_back.='"privat"');
+			($row['mobile_show'] ? $send_back.='"'.$row['mobile'].'"' : $send_back.='"privat"');
 			$send_back.=',';
 			
 			$send_back.='"homepage":';

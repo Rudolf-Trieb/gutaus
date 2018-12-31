@@ -1,9 +1,9 @@
 <?php
    //SESSION
     session_start();
-	include_once('include_0_db_conection.php');
+	include_once('../includes/include_0_db_conection.php');
 	
-	if ($_SESSION["login"]==1) {
+	if ($_SESSION["login"]) { // if login true
 	
 		$sql = "SELECT  
 						k.ID_Einheit AS creditnote_id,
@@ -18,17 +18,17 @@
 				
 				JOIN einheiten AS e ON e.ID=k.ID_Einheit
 				
-				WHERE k.ID_Mitglied='".mysql_real_escape_string(trim($_SESSION['user_id']))."'
-				AND  e.ID_Mitglied<>'".mysql_real_escape_string(trim($_SESSION['user_id']))."'
-				AND  e.Einheit<>'Horus'
-				AND  e.Einheit<>'Euro'
-				
+				WHERE      k.ID_Mitglied='".mysql_real_escape_string(trim($_SESSION['user_id']))."'
+				      AND  e.ID_Mitglied='".mysql_real_escape_string(trim($_SESSION['user_id']))."'
+				 
 				ORDER BY creditnote";
 		//echo "sql=".$sql;
 		$sql_result = mysql_query($sql) OR die("<pre>\n".$sql."</pre>\n".mysql_error());
-		$send_back="[";
+		
+		// Loop through all creditnotes to create a JSON object
+		$send_back='[';
 		while ($row = mysql_fetch_assoc($sql_result)) {
-			$send_back.="{";
+			$send_back.='{';
 			
 			$send_back.='"account_balance":';
 			$send_back.='"'.$row['account_balance'].'"';
@@ -37,7 +37,7 @@
 			$send_back.='"name":';
 			$send_back.='"'.$row['creditnote'].'"';
 			$send_back.=',';
-
+			
 			$send_back.='"decimal_digits":';
 			$send_back.='"'.$row['Nachkommastellen'].'"';
 			$send_back.=',';
@@ -57,18 +57,18 @@
 			$send_back.='"total_turnover":';
 			$send_back.='"'.$row['total_turnover'].'"';
 			
-			$send_back.="}";
+			$send_back.='}';
 			$send_back.=',';
 		} // end of creditnotes loop
 		
-		if (substr($send_back, -1, 1)==',') { // if last character is a comma. This is the case is at least one creditnote was found.
+		if (substr($send_back, -1, 1)==',') { // if last character is a comma.If this is the case then at least one creditnote was found.
 			$send_back = substr($send_back, 0, -1); // delete the last character (a comma)
 		}
 		
 		$send_back.="]";
 	}
-	else { // if login false
-		$send_back='[{"login":false}]';
+	else { // else login=false
+		$send_back='[{"login":"false"}]';
 	}
 	echo $send_back;
 ?>

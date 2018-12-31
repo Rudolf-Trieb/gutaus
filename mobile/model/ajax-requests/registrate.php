@@ -1,8 +1,8 @@
 <?php
    //SESSION
     session_start();
-	include_once('include_0_db_conection.php');
-	include_once('funktionen.php');		
+	include_once('../includes/include_0_db_conection.php');
+	include_once('../includes/funktionen.php');		
 
 	$reg_code= $_REQUEST['Code']; // Get send reg_code
 	

@@ -33,7 +33,7 @@
 			}
 			
 			
-			url="./model/pay.php";
+			url="./model/ajax-requests/pay.php";
 
 			$.ajax({
 				type: "post",
@@ -125,7 +125,7 @@
 						
 						$.ajax({
 							type: "post",
-							url: "./model/login-check.php",
+							url: "./model/ajax-requests/login-check.php",
 							data: {userName : username, passWord : password},                   
 							async: true,
 							beforeSend: function() {
@@ -194,7 +194,7 @@
 
 					$.ajax({
 						type: "post",
-						url: "./model/registration-check.php",
+						url: "./model/ajax-requests/registration-check.php",
 						data: {userName : username, 
 							   passWord : password,
 							   passWordRepeat : password_repeat, 
@@ -232,7 +232,7 @@
 						},
 						error: function (request,error) {
 							// This callback function will trigger on unsuccessful action                
-							alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang? oder Fehler in ./model/registration-check.php');
+							alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang? oder Fehler in ./model/ajax-requests/registration-check.php');
 						}
 					}); 
 			}
@@ -241,7 +241,7 @@
 					// Send data to server through ajax call
 					$.ajax({
 						type: "post",
-						url: "./model/registrate.php",
+						url: "./model/ajax-requests/registrate.php",
 						data: {Code : code
 							  },                   
 						async: true,
@@ -274,7 +274,7 @@
 						},
 						error: function (request,error) {
 							// This callback function will trigger on unsuccessful action                
-							alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang? oder Fehler in ./model/registrate.php');
+							alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang? oder Fehler in ./model/ajax-requests/registrate.php');
 						}
 					}); 
 				
@@ -338,7 +338,7 @@
 						
 				$.ajax({
 					type: "post",
-					url: "./model/logout.php",
+					url: "./model/ajax-requests/logout.php",
 					data: {},              
 					async: true,
 					beforeSend: function() {
@@ -417,11 +417,11 @@
 				var url;
 				
 				if (gutaus.creditnotes.chosen=='received' & gutaus.creditnotes.received==false) { // received is searched and published list not loaded
-					url="./model/creditnotes-received.php";
+					url="./model/ajax-requests/creditnotes-received.php";
 				}
 				else if ((gutaus.creditnotes.chosen=='published' || gutaus.creditnotes.chosen=='publish') 
 							& gutaus.creditnotes.published==false){ // published or publish is searched and published list not loaded
-					url="./model/creditnotes-published.php";
+					url="./model/ajax-requests/creditnotes-published.php";
 				}	
 				
 				
@@ -573,7 +573,7 @@
 				// gets account infos of DB from criditnote_chosen
 					$.ajax({
 						type: "post",
-						url: "./model/creditnote-account-info.php",
+						url: "./model/ajax-requests/creditnote-account-info.php",
 						data: {creditnote_chosen_id : id},              
 						async: true,
 						beforeSend: function() {
@@ -683,7 +683,7 @@
 				
 					var url;
 					
-					url="./model/creditnote-transactions.php"
+					url="./model/ajax-requests/creditnote-transactions.php"
 					
 					if (creditnote_chosen.transactions==false) { // creditnote_chosen.transactions are not yet loaded so start loading from DB
 						$.ajax({
@@ -795,7 +795,7 @@
 		
 					var url;
 					
-					url="./model/creditnote-publish.php";
+					url="./model/ajax-requests/creditnote-publish.php";
 					//alert("User limit:"+$("#user_credit_limit-input").val()
 					//+"digits-input:"+$("#creditnote-digits-input").val()
 					//+"member-limit:"+$("#member_credit_limit-input").val()
@@ -848,7 +848,7 @@
 						},
 						error: function (request,error) {
 							// This callback function will trigger on unsuccessful action                
-							alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang? Oder Fehler in ./model/creditnote-publish.php');
+							alert('Netzwerkfehler: Auf den GuTauS-Server konnte nicht zugegriffen werden! Haben Sie Internezugang? Oder Fehler in ./model/ajax-requests/creditnote-publish.php');
 						}
 					}); 
 
@@ -873,11 +873,11 @@
 				var data;
 				var search_str;
 				if (gutaus.members.chosen=='known' & typeof(gutaus.members.known)=='undefined') { // known-list is called but not loaded
-					url="./model/members-known.php";
+					url="./model/ajax-requests/members-known.php";
 					search_str="";
 				}
 				else if (gutaus.members.chosen=='searched' & typeof(gutaus.members.members_searcheded)=='undefined') { // searched-list is called but not loaded
-					url="./model/members-searched.php";
+					url="./model/ajax-requests/members-searched.php";
 					search_str=$.trim($("#members-filter-pay-to").val())
 				}	
 				
@@ -1007,7 +1007,7 @@
 			// get methods  
 			this.get_member_info_belonging_to_id= function(id) {
 				var url;
-				url="./model/member-info-of-id.php";				
+				url="./model/ajax-requests/member-info-of-id.php";				
 				$.ajax({
 					type: "post",
 					url: url,
@@ -1048,7 +1048,7 @@
 			
 			this.get_member_info_belonging_to_email= function(email) {
 				var url;
-				url="./model/member-info-of-email.php";				
+				url="./model/ajax-requests/member-info-of-email.php";				
 				$.ajax({
 					type: "post",
 					url: url,
@@ -1116,7 +1116,7 @@
 						
 			this.get_member_info_belonging_to_mobile= function(mobile) {
 				var url;
-				url="./model/member-info-of-mobile.php";				
+				url="./model/ajax-requests/member-info-of-mobile.php";				
 				$.ajax({
 					type: "post",
 					url: url,

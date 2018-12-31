@@ -1,7 +1,7 @@
 <?php
    //SESSION
     session_start();
-	include_once('include_0_db_conection.php');
+	include_once('../includes/include_0_db_conection.php');
 	
     $username = $_REQUEST['userName']; // Get send username 
     $password = $_REQUEST['passWord'];; // Get send password
