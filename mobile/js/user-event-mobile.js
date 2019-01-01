@@ -296,7 +296,7 @@ $(document).ready(function(){
 			$("#btn-creditnotes-pay_to_publisher").on("click", function(){
 				gutaus.members.chosen='publisher';
 				gutaus.creditnotes.creditnote_chosen.pay_type_of_transfer="member";
-				gutaus.member_chosen.get_member_info_belonging_to_id(gutaus.creditnotes.creditnote_chosen.publisher_id);
+				gutaus.members.member_chosen.get_member_info_belonging_to_id(gutaus.creditnotes.creditnote_chosen.publisher_id);
 			});	
 									
 // known Member ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++						
@@ -436,7 +436,7 @@ $(document).ready(function(){
 												+' '
 												+gutaus.creditnotes.creditnote_chosen.name
 												+' an '
-												+gutaus.member_chosen.member.name);
+												+gutaus.members.member_chosen.member.name);
 		});	
 		
 			$("#input-pay-amount").keyup( function(e){ 
@@ -453,11 +453,11 @@ $(document).ready(function(){
 												+runde(Math.abs($("#input-pay-amount").val()),gutaus.creditnotes.creditnote_chosen.decimal_digits)
 												+' '+gutaus.creditnotes.creditnote_chosen.name
 												+' an '
-												+gutaus.member_chosen.member.name);
+												+gutaus.members.member_chosen.member.name);
 			});	
 
 			$("#input-pay-amount").change( function(){   
-					$(".massage-line-header").html('bezahle '+Math.abs($("#input-pay-amount").val())+' '+gutaus.creditnotes.creditnote_chosen.name+' an '+gutaus.member_chosen.member.name);
+					$(".massage-line-header").html('bezahle '+Math.abs($("#input-pay-amount").val())+' '+gutaus.creditnotes.creditnote_chosen.name+' an '+gutaus.members.member_chosen.member.name);
 			});	
 
 		//	$("#input-pay-amount").focusout(function() {
@@ -473,7 +473,7 @@ $(document).ready(function(){
 										+gutaus.creditnotes.creditnote_chosen.pay_amount
 										+' '
 										+gutaus.creditnotes.creditnote_chosen.name
-										+' an '+gutaus.member_chosen.member.name
+										+' an '+gutaus.members.member_chosen.member.name
 										+' f&uuml;r '
 										+$("#input-pay-purpose").val());
 				
@@ -488,7 +488,7 @@ $(document).ready(function(){
 										+gutaus.creditnotes.creditnote_chosen.pay_amount
 										+' '
 										+gutaus.creditnotes.creditnote_chosen.name
-										+' an '+gutaus.member_chosen.member.name
+										+' an '+gutaus.members.member_chosen.member.name
 										+' f&uuml;r '
 										+$("#input-pay-purpose").val());
 			});
@@ -498,7 +498,7 @@ $(document).ready(function(){
 										+gutaus.creditnotes.creditnote_chosen.pay_amount
 										+' '
 										+gutaus.creditnotes.creditnote_chosen.name
-										+' an '+gutaus.member_chosen.member.name
+										+' an '+gutaus.members.member_chosen.member.name
 										+' f&uuml;r '
 										+$("#input-pay-purpose").val());				
 			});
