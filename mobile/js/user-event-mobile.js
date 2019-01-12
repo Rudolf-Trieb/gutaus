@@ -84,12 +84,31 @@ $(document).ready(function(){
 // SELECT MEMBERLISTS ******************************************************************************************************************************
 //*************************************************************************************************************************************************	
 
-		$(document).on("pagebeforeshow", "#page-memberlists-menu", function() { // chose a menbershiplist 
-			$(".navigation-line").html("Mitgliederlisten");
-			$(".massage-line-header").html("Bitte w&auml;hlen Sie aus!");
-			$(".gutaus-btn-back").attr("href", "#page-logged-in-menu");
+	$(document).on("pagebeforeshow", "#page-memberlists-menu", function () { // chose a menbershiplist on this page
+		$(".gutaus-btn-back").attr("href", "#page-logged-in-menu");
+		$(".gutaus-btn-next").hide();
+		$(".navigation-line").html('Mitgliederlisten');
+		$(".info-line-header").hide();
+		$(".massage-line-header").html('Bitte wähle eine Liste aus');
+	});
+	
+		//members-list-debtors ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+		$(document).on("pagebeforeshow", "#page-members-list-debtors", function () { // chose a debtor on this page
+			gutaus.members.chosen = 'debtors'
+			gutaus.members.get(); 
+			$('#members-filter-debtors').keyup(); //in order to get ABC dividers on first time page is showen
+			$(".gutaus-btn-back").attr("href", "#page-memberlists-menu");
 			$(".gutaus-btn-next").hide();
-		});	
+			$(".navigation-line").html('Schuldner-Liste');
+			$(".info-line-header").css({
+				color: "black",
+				backgroundColor: "lightgreen"
+			}).html('Mitglieder deren Gutscheine Du hast').show();
+			$(".massage-line-header").html('Bitte wähle einen Schuldner oder Gutschein aus');	
+		});		
+		
 	
 //*************************************************************************************************************************************************
 // SELECT CREDITNOTE-MENU ******************************************************************************************************************************
@@ -296,7 +315,7 @@ $(document).ready(function(){
 			$("#btn-creditnotes-pay_to_publisher").on("click", function(){
 				gutaus.members.chosen='publisher';
 				gutaus.creditnotes.creditnote_chosen.pay_type_of_transfer="member";
-				gutaus.members.member_chosen.get_member_info_belonging_to_id(gutaus.creditnotes.creditnote_chosen.publisher_id);
+				gutaus.members.member_chosen.get_member_info_belonging_to_id(gutaus.creditnotes.creditnote_chosen.publisher_id,"page-members-list-pay-to","page-pay-amount");
 			});	
 									
 // known Member ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++						
@@ -314,21 +333,15 @@ $(document).ready(function(){
 				}
 				else {
 					$("#list-members-pay-to").empty(); // clear members-list
-					$.mobile.changePage("#page-members-list");
+					$.mobile.changePage("#page-members-list-pay-to");
 				}
 				
 			});	
-			/*
-				$(document).on("pagebeforeshow", "#page-memberlists-menu", function(){ 
-					$(".navigation-line").html('bezahle');
-					$(".massage-line-header").html('bezahle '+gutaus.creditnotes.creditnote_chosen.name+' an ein Mitglied aus Liste ...');
-					$(".gutaus-btn-back").attr("href", "#page-pay-to-menu");
-				});	
-			*/	
+			
 
 // Memberlists ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++					
 		
-					$(document).on("pagebeforeshow", "#page-members-list", function(){ 
+					$(document).on("pagebeforeshow", "#page-members-list-pay-to", function(){ 
 						if(gutaus.members.chosen=='known'){
 							$(".navigation-line").html('bezahle an bekanntes Mitglied');
 						}
@@ -423,10 +436,10 @@ $(document).ready(function(){
 					$(".gutaus-btn-back").attr("href", "#page-pay-mobile");
 				}
 				else if (gutaus.members.chosen=="known") {
-					$(".gutaus-btn-back").attr("href", "#page-members-list");
+					$(".gutaus-btn-back").attr("href", "#page-members-list-pay-to");
 				}
 				else if (gutaus.members.chosen=="searched") {
-					$(".gutaus-btn-back").attr("href", "#page-members-list");
+					$(".gutaus-btn-back").attr("href", "#page-members-list-pay-to");
 				}
 				else {
 					$(".gutaus-btn-back").attr("href", "#page-pay-to-menu");
@@ -515,7 +528,7 @@ $(document).ready(function(){
 // SELECT MEMBER **********************************************************************************************************************************
 //*************************************************************************************************************************************************	
 				
-					$(document).on("pageshow", "#page-members-list", function() {
+					$(document).on("pageshow", "#page-members-list-pay-to", function() {
 						//$("#list-members-pay-to:visible").listview("refresh");
 						$("#members-filter-pay-to").blur();
 						if(gutaus.members.chosen=='searched') {

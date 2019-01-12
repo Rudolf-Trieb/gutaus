@@ -4,14 +4,14 @@
 	include_once('../includes/include_0_db_conection.php');
 	
 	if ($_SESSION["login"]==1) {
-		$members_searched = $_REQUEST['members_searched']; // Get send search string
-		//echo "members_searched=".$members_searched;
+		$members_filter = $_REQUEST['members_filter']; // Get send search string
+		//echo "members_filter=".$members_filter;
 		
 		$sql="SELECT  Nickname,
 					  ID
 			FROM mitglieder
 			WHERE 
-			Nickname LIKE '%".mysql_real_escape_string(trim($members_searched))."%'
+			Nickname LIKE '%".mysql_real_escape_string(trim($members_filter))."%'
 			ORDER BY Nickname";
 			
 		

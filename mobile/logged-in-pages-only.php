@@ -318,24 +318,51 @@
 //*************************************************************************************************************************************************  
 //-->																			
 	<div data-role="page" id="page-profile">
-		<div data-role="header" data-theme="b" data-position="fixed" data-theme="b">
-		<div data-role="navbar">
-			<ul>
-				<li><a href="#" class="ui-btn ui-btn-inline ui-corner-all btn-logout" data-transition="flip">LOGOUT<br><span class="username"></span></a></li>
-				<li style="text-align: center;">GuTauS</li>
-				<li><a href="#page-logged-in-menu" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-right ui-corner-all " data-transition="flow" data-direction="reverse">Home</a></li>
-			</ul>
-		</div>
-		<div data-role="navbar">
-			<ul>
-				<li style="text-align: center"; class="avatar"></li>
-			</ul>
-		</div>
-		<h1>Profil</h1>
-		</div>
+		<?php include('header.html');?>
 
 		<div data-role="main" class="ui-content">
-		
+
+			<!--Main data-->
+			<div class="member-name"></div>
+			<div class="member-test_member"></div>
+			test_member
+			<div class="member-avatar"></div>
+
+			<div class="member-registration_date"></div>
+			registration_date
+			<div class="member-last_login"></div>
+			last_login
+
+			<!--//Contact-->
+			<div class="member-email"></div>
+			email_show email
+			<div class="member-telephone_number"></div>
+			telephone_number_show telephone_number
+			<div class="member-mobile"></div>
+			mobile_show mobile
+			<div class="member-homepage"></div>
+			homepage
+
+			<!--//Address-->
+			<div class="member-first_name"></div>
+			first_name
+			<div class="member-last_name"></div>
+			last_name
+			<div class="member-street"></div>
+			street
+			<div class="member-postal_code"></div>
+			postal_code
+			<div class="member-residence"></div>
+			residence
+
+			<!--//Social media-->
+			<div class="member-skype"></div>
+			skype
+			<div class="member-okitalk"></div>
+			okitalk
+			<div class="member-facebook"></div>
+			facebook
+				
 		</div>
 
 		<?php include('footer.html');?>
@@ -359,7 +386,7 @@
 		<?php include('footer.html');?>
 	</div> 
 	
-		<div data-role="page" id="page-members-list">
+		<div data-role="page" id="page-members-list-pay-to">
 			<?php include('header.html');?>
 
 			<div data-role="main" class="ui-content">
@@ -447,9 +474,9 @@
 
 			<div data-role="main" class="ui-content">
 			<form class="ui-filterable">
-				<input id="members-filter-debtors-pay-to" data-type="search" placeholder="Bitte Mitgliedsname eingenben">
+				<input id="members-filter-debtors" data-type="search" placeholder="Bitte Schuldner-Name eingenben">
 			</form>
-			<ul data-role="listview" id="list-members-pay-to" data-filter="true" data-input="#members-filter-debtors-pay-to" data-autodividers="true" data-inset="true">
+			<ul data-role="listview" id="list-members-debtors" data-filter="true" data-input="#members-filter-debtors" data-autodividers="true" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
 				<!-- is filled from DB//-->
 			</ul>
 			</div>

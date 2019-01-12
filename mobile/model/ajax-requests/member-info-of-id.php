@@ -17,7 +17,7 @@
 						`Telefonnummer` AS telephone_number, 
 						`Show_Telefonnummer` AS telephone_number_show, 
 						`Mobilnummer` AS mobile , 
-						`Show_Mobilnummer` AS mobile, 
+						`Show_Mobilnummer` AS mobile_show, 
 						`Homepage` AS homepage, 
 						`Registrierungsdatum` AS registration_date, 
 						`PLZ` AS postal_code, 
@@ -63,7 +63,7 @@
 			$send_back.=',';
 			
 			$send_back.='"mobile":';
-			($row['telephone_mobile_show'] ? $send_back.='"'.$row['mobile'].'"' : $send_back.='"privat"');
+			($row['mobile_show'] ? $send_back.='"'.$row['mobile'].'"' : $send_back.='"privat"');
 			$send_back.=',';
 			
 			$send_back.='"homepage":';

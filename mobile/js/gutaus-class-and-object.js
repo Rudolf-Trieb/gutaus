@@ -60,7 +60,7 @@
 						if (typeof pay.errors != 'undefined') {
 							alert(pay.errors);
 							if (gutaus.creditnotes.chosen=='published' || gutaus.creditnotes.chosen=='received') {
-								$.mobile.changePage("#page-members-list");
+								$.mobile.changePage("#page-members-list-pay-to");
 							}
 							else if (gutaus.creditnotes.chosen=='email') {
 								$.mobile.changePage("#page-pay-email");
@@ -304,7 +304,7 @@
 						
 					}			
 				}
-				else if (activePage=="page-members-list") {
+				else if (activePage=="page-members-list-pay-to") {
 					gutaus.members.get();
 				}				
 				
@@ -871,21 +871,29 @@
 			this.get= function() {
 				var url;
 				var data;
-				var search_str;
+				var filter_str;
 				if (gutaus.members.chosen=='known' & typeof(gutaus.members.known)=='undefined') { // known-list is called but not loaded
 					url="./model/ajax-requests/members-known.php";
-					search_str="";
+					filter_str="";
 				}
-				else if (gutaus.members.chosen=='searched' & typeof(gutaus.members.members_searcheded)=='undefined') { // searched-list is called but not loaded
+				else if (gutaus.members.chosen=='searched' 
+						& (typeof(gutaus.members.members_filter)=='undefined'|| filter_str=="")
+				) { // searched-list is called but not loaded but if filter_str=="" than load yet
 					url="./model/ajax-requests/members-searched.php";
-					search_str=$.trim($("#members-filter-pay-to").val())
-				}	
+					filter_str=$.trim($("#members-filter-pay-to").val())
+				}
+				else if (gutaus.members.chosen == 'debtors' 
+					& (typeof (gutaus.members.members_filter) == 'undefined' || filter_str == "")
+				) { // debtors-list is called but not loaded but if filter_str=="" than load yet
+					url = "./model/ajax-requests/members-debtors.php";
+					filter_str = $.trim($("#members-filter-debtors").val())
+				}		
 				
 				if (typeof(url)!='undefined') { // Type of members list to search for in DB is set
 					$.ajax({
 						type: "post",
 						url: url,
-						data: {members_searched : search_str}, // Convert a form to a JSON string representation                   
+						data: {members_filter : filter_str}, // Convert a form to a JSON string representation                   
 						async: true,
 						beforeSend: function() {
 							// This callback function will trigger before data is sent
@@ -904,8 +912,11 @@
 									if (gutaus.members.chosen=='known') { // known
 										gutaus.members.known=members;
 									}
-									else{ // searched
+									else if (gutaus.members.chosen =='searched'){ // searched
 										gutaus.members.searched=members;
+									}
+									else if (gutaus.members.chosen == 'debtors') { // searched
+										gutaus.members.debtors = members;
 									}
 									gutaus.members.show();
 									return true; // member(s) was (were) found in DB				
@@ -952,24 +963,48 @@
 			this.show= function() {	
 
 				var members;
-				if (gutaus.members.chosen=='known') {
-					members=gutaus.members.known;
+				if (gutaus.members.chosen == 'known' || gutaus.members.chosen == 'searched') {
+					if (gutaus.members.chosen=='known') {
+						members=gutaus.members.known;
+					}
+					else if (gutaus.members.chosen=='searched') { // searched
+						members=gutaus.members.searched;
+					}
+					$("#list-members-pay-to").empty(); // clear members-list
+					$.each(members,function(i,member){ // fill members-list
+						$("#list-members-pay-to").append("<li><a href='#member' "
+														+"onclick=gutaus.members.member_chosen.get_member_info_belonging_to_id('"
+														+member.id
+														+"',"
+														+ "'page-members-list-pay-to','page-pay-amount'"
+														+")>"
+														+member.name
+														+"</a></li>");
+					});
+					
+					$.mobile.changePage("#page-members-list-pay-to");
+					$("#list-members-pay-to:visible").listview("refresh");
 				}
-				else if (gutaus.members.chosen=='searched') { // searched
-					members=gutaus.members.searched;
+				else if (gutaus.members.chosen == 'debtors') {
+					members = gutaus.members.debtors;
+					$("#list-members-debtors").empty(); // clear members-list
+					$.each(members, function (i, debtor) { // fill members-list
+						$("#list-members-debtors").append("<li class='ui-li-has-count'><a href='#page-profile' "
+							+ "onclick=gutaus.members.member_chosen.get_member_info_belonging_to_id('"
+							+ debtor.ID_Schuldner
+							+ "',"
+							+ "'page-members-list-debtors','#page-profile'"
+							+ ") class='ui-btn ui-btn-icon-right ui-icon-carat-r'>"
+							+ debtor.Schuldner
+							+ "</a><span class='ui-li-count ui-body-inherit'  style='text-align: center;background-color: lightgreen; color:black'>"
+							+ debtor.Kontostand
+							+ " "
+							+ debtor.Einheit
+							+ "</span></li>");
+					});
+
+
 				}
-				$("#list-members-pay-to").empty(); // clear members-list
-				$.each(members,function(i,member){ // fill members-list
-					$("#list-members-pay-to").append("<li><a href='#member' "
-													+"onclick=gutaus.members.member_chosen.get_member_info_belonging_to_id('"
-													+member.id
-													+"')>"
-													+member.name
-													+"</a></li>");
-				});
-				
-				$.mobile.changePage("#page-members-list");
-				$("#list-members-pay-to:visible").listview("refresh");
 				
 			}
 				
@@ -979,9 +1014,15 @@
 			function MEMBER_CHOSEN () {
 			//PROPERTIES
 				
-				this.member;   // all data of chosen-member
+				this.member;   // all DB-data of chosen-member
 				
 			//METHODS
+
+				
+
+				this.avatar_img_tag = function () {
+					return "Profilbild: <img  style='width:63px' alt='Profilbild' src='../avatare/" + this.member.avatar + "'/>";
+				}
 			
 				// Validation methods
 				this.validateEmail=function(sEmail) {
@@ -1005,7 +1046,7 @@
 				}	
 				
 				// get methods  
-				this.get_member_info_belonging_to_id= function(id) {
+				this.get_member_info_belonging_to_id= function(id,hrefBack,toPage) {
 					var url;
 					url="./model/ajax-requests/member-info-of-id.php";				
 					$.ajax({
@@ -1029,8 +1070,8 @@
 								gutaus.members.member_chosen.member=member_out_of_DB;
 								//gutaus.members.member_chosen.id=id;
 								gutaus.members.member_chosen.show();
-								$(".gutaus-btn-back").attr("href", "#pay");
-								$.mobile.changePage("#page-pay-amount");
+								$(".gutaus-btn-back").attr("href", "#"+hrefBack);//pay
+								$.mobile.changePage("#" +toPage);
 
 							}
 							else {
@@ -1184,6 +1225,28 @@
 					
 					if (gutaus.members.chosen=='member' || gutaus.members.chosen=='publisher' ) {
 						$(".receiver-chosen").html(this.member.name);
+					}
+					else if (gutaus.members.chosen == 'debtors') {
+						// Header
+						$(".gutaus-btn-back").attr("href", "#page-members-list-debtors");
+						$(".gutaus-btn-next").hide();
+						$(".navigation-line").html('Profil von ' + this.member.name);
+						$(".info-line-header").css({
+							color: "black",
+							backgroundColor: "lightgreen"
+						}).html('Profil von NICKNAME').hide();
+						$(".massage-line-header").html('öffentlichen Daten von ' + this.member.name);
+
+						// Content
+						$(".member-name").html('Mitgliedsname:  ' + this.member.name);
+						if (this.member.avatar!="") {
+							$(".member-avatar").html(this.avatar_img_tag());
+						}
+						else {
+							$(".member-avatar").html("Profilbild: " + this.member.name + " hat noch kein Profilbild!");
+						}
+							
+
 					}
 					else {
 						$(".receiver-chosen").html(this.member.email);
